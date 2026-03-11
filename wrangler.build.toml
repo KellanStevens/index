@@ -1,0 +1,8 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
+name = "index"
+pages_build_output_dir = "./dist"
+
+# Build-only: custom assets binding (ASSETS is reserved in Pages).
+# Used by the adapter during build; deploy uses wrangler.toml only.
+[assets]
+binding = "STATIC_ASSETS"

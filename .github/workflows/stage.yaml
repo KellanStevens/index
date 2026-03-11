@@ -36,7 +36,9 @@ jobs:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           # 1. Deploy the code to a branch explicitly named after the PR number
+          # Use root wrangler.toml only (Pages-valid; no main/assets/images)
           bunx wrangler pages deploy dist \
+            --config wrangler.toml \
             --project-name $PROJECT_NAME \
             --branch $PR_NUMBER
 
