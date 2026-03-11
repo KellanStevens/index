@@ -1,0 +1,3 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
+name = "index"
+pages_build_output_dir = "./dist"
