@@ -1,0 +1,42 @@
+name: Deploy PR Stage
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build Project
+        run: bun run build
+
+      - name: Deploy and Attach Custom Domain
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # 1. Deploy the code to a branch explicitly named after the PR number
+          bunx wrangler pages deploy dist \
+            --project-name $PROJECT_NAME \
+            --branch $PR_NUMBER
+
+          # 2. Attach the specific custom domain to the Pages project
+          curl -s -X POST "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$PROJECT_NAME/domains" \
+               -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+               -H "Content-Type: application/json" \
+               -d "{\"name\": \"$PR_NUMBER.stage.kellanstevens.com\"}"
