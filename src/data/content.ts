@@ -5,6 +5,7 @@ export const profile = {
   location: 'Cape Town, South Africa',
   email: 'linkedin@kellanstevens.com',
   linkedinUrl: 'https://linkedin.com/in/kellan-stevens',
+  githubUrl: 'https://github.com/kellanstevens',
   initials: 'KS',
 } as const;
 
