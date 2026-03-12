@@ -1,34 +1,83 @@
 ---
-// src/pages/index.astro
-// You can import React components here later using standard import syntax
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProfileHeader from '@/components/ProfileHeader.astro';
+import Section from '@/components/Section.astro';
+import ExperienceCard from '@/components/ExperienceCard.astro';
+import EducationCard from '@/components/EducationCard.astro';
+import Badge from '@/components/ui/Badge.astro';
+import {
+  profile,
+  about,
+  workExperience,
+  education,
+  skills,
+} from '@/data/resume';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Coming Soon</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: system-ui, -apple-system, sans-serif;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-color: #f4f4f5;
-                color: #27272a;
-            }
-            h1 {
-                font-size: 3rem;
-                font-weight: 700;
-                letter-spacing: -0.025em;
-            }
-        </style>
-	</head>
-	<body>
-		<h1>Coming Soon.</h1>
-	</body>
-</html>
+<BaseLayout
+  title={`${profile.name}'s Resume`}
+  description={profile.title}
+>
+  <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+    <div class="space-y-10">
+      <ProfileHeader
+        name={profile.name}
+        title={profile.title}
+        location={profile.location}
+        email={profile.email}
+        linkedinUrl={profile.linkedinUrl}
+      />
+
+      <Section title="About" id="about">
+        <p class="text-sm leading-relaxed text-muted-foreground">{about}</p>
+      </Section>
+
+      <Section title="Work Experience" id="experience">
+        <div class="space-y-6">
+          {workExperience.map((job) => (
+            <ExperienceCard
+              role={job.role}
+              location={job.location}
+              dateRange={job.dateRange}
+              company={job.company}
+              employmentType={job.employmentType}
+            >
+              {job.description}
+            </ExperienceCard>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Education" id="education">
+        <div class="space-y-6">
+          {education.map((edu) => (
+            <EducationCard
+              school={edu.school}
+              dateRange={edu.dateRange}
+              degree={edu.degree}
+            />
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Skills" id="skills">
+        <div class="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <Badge variant="secondary">{skill}</Badge>
+          ))}
+        </div>
+      </Section>
+    </div>
+
+    <footer class="mt-16 border-t border-border pt-6 text-center text-sm text-muted-foreground">
+      <a
+        href="https://www.self.so/?ref=kellan"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:underline"
+      >
+        Made by Self.so
+      </a>
+    </footer>
+  </main>
+</BaseLayout>
