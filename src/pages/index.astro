@@ -4,6 +4,7 @@ import Hero from '@/components/Hero.astro';
 import Timeline from '@/components/Timeline.astro';
 import SkillBadges from '@/components/SkillBadges.astro';
 import DockNav from '@/components/DockNav.astro';
+import Footer from '@/components/Footer.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import {
   profile,
@@ -55,4 +56,6 @@ const educationItems = education.map(edu => ({
     
     <DockNav />
   </main>
+  
+  <Footer />
 </BaseLayout>
