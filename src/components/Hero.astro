@@ -1,0 +1,70 @@
+---
+import profileImg from '@/images/Kellan.jpg';
+
+interface Props {
+  profile: any;
+  about: string;
+}
+
+const { profile, about } = Astro.props;
+---
+<section class="min-h-[80vh] flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+    <div class="md:col-span-8 flex flex-col items-start space-y-8">
+      <div class="space-y-4">
+        <span class="label-md inline-block">{profile.location}</span>
+        <h1 class="display-lg">{profile.name}</h1>
+      </div>
+      
+      <p class="body-lg max-w-2xl text-on-surface-variant">
+        {profile.title}
+      </p>
+      
+      <div class="flex flex-wrap gap-4 pt-4">
+        <a 
+          href={`mailto:${profile.email}`}
+          class="px-8 py-4 rounded-full bg-gradient-to-br from-primary to-primary-dim text-on-primary label-md tracking-[0.1em] hover:opacity-90 transition-opacity"
+        >
+          Contact Me
+        </a>
+        <a 
+          href={profile.linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-4 rounded-full border border-outline-variant/30 text-on-surface hover:bg-surface-container-low transition-colors label-md tracking-[0.1em]"
+        >
+          LinkedIn
+        </a>
+        <a 
+          href={profile.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-4 rounded-full border border-outline-variant/30 text-on-surface hover:bg-surface-container-low transition-colors label-md tracking-[0.1em]"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+    
+    <div class="md:col-span-4 justify-center md:flex hidden">
+      <div class="aspect-[3/4] w-full max-w-sm bg-surface-container-low rounded-3xl overflow-hidden relative group shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
+         <img src={profileImg.src} alt={profile.name} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+         <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+         <div class="absolute bottom-6 left-6 right-6">
+            <span class="label-sm text-on-surface px-4 py-2 bg-surface-container-lowest/80 backdrop-blur-md rounded-full inline-block shadow-sm">EST. 2002</span>
+         </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-32 grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="md:col-span-4">
+      <h2 class="label-md pt-2">About</h2>
+    </div>
+    <div class="md:col-span-8">
+      <p class="body-lg text-on-surface-variant leading-relaxed">
+        {about}
+      </p>
+    </div>
+  </div>
+</section>

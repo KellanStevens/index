@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import ProfileHeader from '@/components/ProfileHeader.astro';
-import Section from '@/components/Section.astro';
-import ExperienceCard from '@/components/ExperienceCard.astro';
-import EducationCard from '@/components/EducationCard.astro';
-import Badge from '@/components/ui/Badge.astro';
-import ThemeToggle from '@/components/ThemeToggle';
+import Hero from '@/components/Hero.astro';
+import Timeline from '@/components/Timeline.astro';
+import SkillBadges from '@/components/SkillBadges.astro';
+import DockNav from '@/components/DockNav.astro';
+import ThemeToggle from '@/components/ThemeToggle.astro';
 import {
   profile,
   about,
@@ -13,85 +12,47 @@ import {
   education,
   skills,
 } from '@/data/content';
+
+const experienceItems = workExperience.map(job => ({
+  title: job.role,
+  subtitle: `${job.company} • ${job.employmentType}`,
+  dateRange: job.dateRange,
+  description: job.description,
+  badges: [job.location]
+}));
+
+const educationItems = education.map(edu => ({
+  title: edu.degree,
+  subtitle: edu.school,
+  dateRange: edu.dateRange
+}));
 ---
 
 <BaseLayout
   title={`${profile.name}`}
-  description={profile.title}
+  description={about.substring(0, 150) + '...'}
 >
-  <div class="fixed top-4 right-4 z-50">
-    <ThemeToggle client:load />
+  <div class="fixed top-8 right-8 z-50">
+    <ThemeToggle />
   </div>
-  <main class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
-    <div class="space-y-10">
-      <ProfileHeader
-        name={profile.name}
-        title={profile.title}
-        location={profile.location}
-        email={profile.email}
-        linkedinUrl={profile.linkedinUrl}
-      />
-
-      <Section title="About" id="about">
-        <p class="text-sm leading-relaxed text-muted-foreground">{about}</p>
-      </Section>
-
-      <Section title="Work Experience" id="experience">
-        <div class="space-y-6">
-          {workExperience.map((job) => (
-            <ExperienceCard
-              role={job.role}
-              location={job.location}
-              dateRange={job.dateRange}
-              company={job.company}
-              employmentType={job.employmentType}
-            >
-              {job.description}
-            </ExperienceCard>
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Education" id="education">
-        <div class="space-y-6">
-          {education.map((edu) => (
-            <EducationCard
-              school={edu.school}
-              dateRange={edu.dateRange}
-              degree={edu.degree}
-            />
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Skills" id="skills">
-        <div class="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <Badge variant="secondary">{skill}</Badge>
-          ))}
-        </div>
-      </Section>
-    </div>
-
-    <footer class="mt-16 border-t border-border pt-6 text-center text-sm text-muted-foreground">
-      <nav class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-        <a
-          href={profile.linkedinUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:underline"
-        >
-          LinkedIn
-        </a>
-        <a
-          href={profile.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:underline"
-        >
-          GitHub
-        </a>
-      </nav>
-    </footer>
+  
+  <main class="relative pb-40">
+    <Hero profile={profile} about={about} />
+    
+    <Timeline 
+      id="experience" 
+      title="Work Experience" 
+      items={experienceItems} 
+    />
+    
+    <Timeline 
+      id="education" 
+      title="Education" 
+      items={educationItems} 
+    />
+    
+    <SkillBadges skills={skills} />
+    
+    <DockNav />
   </main>
 </BaseLayout>
