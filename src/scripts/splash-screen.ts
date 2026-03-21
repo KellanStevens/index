@@ -1,5 +1,5 @@
 function initSplashScreen() {
-    const splash = document.getElementById("splash-screen");
+    const splash = document.getElementById('splash-screen');
 
     if (splash) {
         setTimeout(() => {

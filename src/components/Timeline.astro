@@ -1,57 +1,67 @@
 ---
 interface TimelineItemProps {
-  title: string;
-  subtitle: string;
-  dateRange: string;
-  description?: string;
-  badges?: readonly string[];
+    title: string;
+    subtitle: string;
+    dateRange: string;
+    description?: string;
+    badges?: readonly string[];
 }
 
 interface Props {
-  title: string;
-  id: string;
-  items: TimelineItemProps[];
+    title: string;
+    id: string;
+    items: TimelineItemProps[];
 }
 
 const { title, id, items } = Astro.props;
 ---
-<section id={id} class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-    <div class="md:col-span-4 relative">
-      <h2 class="label-md sticky top-24 pt-2">{title}</h2>
-    </div>
-    
-    <div class="md:col-span-8 space-y-16">
-      {items.map((item) => (
-        <div class="group bg-surface-container-lowest rounded-3xl p-8 hover:bg-surface-container-low transition-colors duration-500 ease-out shadow-[0_10px_40px_rgba(45,51,56,0)] hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
-          <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8 mb-4">
-            <span class="label-sm text-on-surface-variant whitespace-nowrap md:w-32 pt-1">{item.dateRange}</span>
-            <div class="flex-1">
-              <h3 class="headline-lg text-2xl md:text-3xl mb-1">{item.title}</h3>
-              <div class="body-lg text-primary">{item.subtitle}</div>
-            </div>
-          </div>
-          
-          {(item.description || (item.badges && item.badges.length > 0)) && (
-            <div class="md:pl-40">
-              {item.description && (
-                <p class="body-lg mt-4 text-on-surface-variant leading-relaxed">
-                  {item.description}
-                </p>
-              )}
-              {item.badges && item.badges.length > 0 && (
-                 <div class="flex flex-wrap gap-2 mt-6">
-                   {item.badges.map((badge: string) => (
-                     <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-medium text-on-surface-variant tracking-wider uppercase">
-                       {badge}
-                     </span>
-                   ))}
-                 </div>
-              )}
-            </div>
-          )}
+
+<section id={id} class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
+        <div class="relative md:col-span-4">
+            <h2 class="label-md sticky top-24 pt-2">{title}</h2>
         </div>
-      ))}
+
+        <div class="space-y-16 md:col-span-8">
+            {
+                items.map((item) => (
+                    <div class="group bg-surface-container-lowest hover:bg-surface-container-low rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
+                        <div class="mb-4 flex flex-col gap-2 md:flex-row md:items-baseline md:gap-8">
+                            <span class="label-sm text-on-surface-variant pt-1 whitespace-nowrap md:w-32">
+                                {item.dateRange}
+                            </span>
+                            <div class="flex-1">
+                                <h3 class="headline-lg mb-1 text-2xl md:text-3xl">
+                                    {item.title}
+                                </h3>
+                                <div class="body-lg text-primary">
+                                    {item.subtitle}
+                                </div>
+                            </div>
+                        </div>
+
+                        {(item.description ||
+                            (item.badges && item.badges.length > 0)) && (
+                            <div class="md:pl-40">
+                                {item.description && (
+                                    <p class="body-lg text-on-surface-variant mt-4 leading-relaxed">
+                                        {item.description}
+                                    </p>
+                                )}
+                                {item.badges && item.badges.length > 0 && (
+                                    <div class="mt-6 flex flex-wrap gap-2">
+                                        {item.badges.map((badge: string) => (
+                                            <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
+                                                {badge}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                ))
+            }
+        </div>
     </div>
-  </div>
 </section>

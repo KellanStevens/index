@@ -1,24 +1,24 @@
 ---
 interface Props {
-  variant?: 'default' | 'secondary' | 'outline';
-  class?: string;
+    variant?: 'default' | 'secondary' | 'outline';
+    class?: string;
 }
 
 const { variant = 'secondary', class: className = '' } = Astro.props;
 
 const variantClasses = {
-  default: 'border-transparent bg-primary text-primary-foreground shadow',
-  secondary: 'border-transparent bg-secondary text-secondary-foreground',
-  outline: 'text-foreground border-border',
+    default: 'border-transparent bg-primary text-primary-foreground shadow',
+    secondary: 'border-transparent bg-secondary text-secondary-foreground',
+    outline: 'text-foreground border-border',
 };
 ---
 
 <span
-  class:list={[
-    'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium transition-colors',
-    variantClasses[variant],
-    className,
-  ]}
+    class:list={[
+        'inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium transition-colors',
+        variantClasses[variant],
+        className,
+    ]}
 >
-  <slot />
+    <slot />
 </span>

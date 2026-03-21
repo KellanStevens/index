@@ -1,115 +1,170 @@
 ---
+import { HugeiconsIcon } from '@hugeicons/react';
+import {
+    Moon02Icon,
+    Sun01Icon,
+    ModernTvIcon,
+} from '@hugeicons/core-free-icons';
 ---
-<div class="relative" id="theme-toggle-container">
-  <button
-    id="theme-toggle-btn"
-    class="inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-surface-container-lowest shadow-[0_4px_12px_rgba(0,0,0,0.05)] hover:bg-surface-container hover:text-on-surface h-10 w-10 text-on-surface"
-    aria-label="Toggle theme"
-  >
-    <!-- Light Mode Icon (Sun) -->
-    <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-    <!-- Dark Mode Icon (Moon) -->
-    <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-    <!-- System Mode Icon (TV/Monitor) -->
-    <svg id="theme-icon-system" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-  </button>
 
-  <div
-    id="theme-dropdown"
-    class="absolute right-0 top-full mt-2 hidden z-50 min-w-[8rem] overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-lowest p-2 text-on-surface shadow-[0_10px_40px_rgba(45,51,56,0.08)]"
-  >
-    <button data-theme-value="light" class="relative flex w-full cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm outline-none transition-colors hover:bg-surface-container-low hover:text-on-surface">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-      Light
+<div class="relative" id="theme-toggle-container">
+    <button
+        id="theme-toggle-btn"
+        class="focus-visible:ring-ring border-input bg-surface-container-lowest hover:bg-surface-container hover:text-on-surface text-on-surface inline-flex h-10 w-10 items-center justify-center rounded-full border text-sm font-medium whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-colors focus-visible:ring-1 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+        aria-label="Toggle theme"
+    >
+        <HugeiconsIcon
+            icon={Moon02Icon}
+            size={20}
+            strokeWidth={2}
+            id="theme-icon-dark"
+        />
+        <HugeiconsIcon
+            icon={Sun01Icon}
+            size={20}
+            strokeWidth={2}
+            id="theme-icon-light"
+        />
+        <HugeiconsIcon
+            icon={ModernTvIcon}
+            size={20}
+            strokeWidth={2}
+            id="theme-icon-system"
+        />
     </button>
-    <button data-theme-value="dark" class="relative flex w-full cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm outline-none transition-colors hover:bg-surface-container-low hover:text-on-surface mt-1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      Dark
-    </button>
-    <button data-theme-value="system" class="relative flex w-full cursor-pointer select-none items-center rounded-lg px-3 py-2 text-sm outline-none transition-colors hover:bg-surface-container-low hover:text-on-surface mt-1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-      System
-    </button>
-  </div>
+
+    <div
+        id="theme-dropdown"
+        class="border-outline-variant/20 bg-surface-container-lowest text-on-surface absolute top-full right-0 z-50 mt-2 hidden min-w-[8rem] overflow-hidden rounded-xl border p-2 shadow-[0_10px_40px_rgba(45,51,56,0.08)]"
+    >
+        <button
+            data-theme-value="light"
+            class="hover:bg-surface-container-low hover:text-on-surface relative flex w-full cursor-pointer items-center rounded-lg px-3 py-2 text-sm transition-colors outline-none select-none"
+        >
+            <HugeiconsIcon
+                icon={Moon02Icon}
+                size={20}
+                strokeWidth={2}
+                id="theme-icon-dark"
+                className="mr-2"
+            />
+            Light
+        </button>
+        <button
+            data-theme-value="dark"
+            class="hover:bg-surface-container-low hover:text-on-surface relative mt-1 flex w-full cursor-pointer items-center rounded-lg px-3 py-2 text-sm transition-colors outline-none select-none"
+        >
+            <HugeiconsIcon
+                icon={Sun01Icon}
+                size={20}
+                strokeWidth={2}
+                id="theme-icon-light"
+                className="mr-2"
+            />
+            Dark
+        </button>
+        <button
+            data-theme-value="system"
+            class="hover:bg-surface-container-low hover:text-on-surface relative mt-1 flex w-full cursor-pointer items-center rounded-lg px-3 py-2 text-sm transition-colors outline-none select-none"
+        >
+            <HugeiconsIcon
+                icon={ModernTvIcon}
+                size={20}
+                strokeWidth={2}
+                id="theme-icon-system"
+                className="mr-2"
+            />
+            System
+        </button>
+    </div>
 </div>
 
 <script is:inline>
-  const STORAGE_KEY = 'theme';
-  const container = document.getElementById('theme-toggle-container');
-  const btn = document.getElementById('theme-toggle-btn');
-  const dropdown = document.getElementById('theme-dropdown');
-  const icons = {
-    light: document.getElementById('theme-icon-light'),
-    dark: document.getElementById('theme-icon-dark'),
-    system: document.getElementById('theme-icon-system'),
-  };
-  const themeButtons = dropdown.querySelectorAll('[data-theme-value]');
+    const STORAGE_KEY = 'theme';
+    const container = document.getElementById('theme-toggle-container');
+    const btn = document.getElementById('theme-toggle-btn');
+    const dropdown = document.getElementById('theme-dropdown');
+    const icons = {
+        light: document.getElementById('theme-icon-light'),
+        dark: document.getElementById('theme-icon-dark'),
+        system: document.getElementById('theme-icon-system'),
+    };
+    const themeButtons = dropdown.querySelectorAll('[data-theme-value]');
 
-  function getStoredTheme() {
-    if (typeof localStorage === 'undefined') return 'system';
-    const s = localStorage.getItem(STORAGE_KEY);
-    return s === 'light' || s === 'dark' || s === 'system' ? s : 'system';
-  }
-
-  function applyTheme(theme) {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const dark = theme === 'dark' || (theme === 'system' && prefersDark);
-    document.documentElement.classList.toggle('dark', dark);
-  }
-
-  function updateActiveState(theme) {
-    Object.values(icons).forEach(icon => icon.classList.add('hidden'));
-    if (icons[theme]) icons[theme].classList.remove('hidden');
-
-    themeButtons.forEach(button => {
-      if (button.dataset.themeValue === theme) {
-        button.classList.add('text-primary', 'font-medium', 'bg-surface-container-highest');
-      } else {
-        button.classList.remove('text-primary', 'font-medium', 'bg-surface-container-highest');
-      }
-    });
-  }
-
-  function selectTheme(chosen) {
-    localStorage.setItem(STORAGE_KEY, chosen);
-    applyTheme(chosen);
-    updateActiveState(chosen);
-    closeDropdown();
-  }
-
-  function toggleDropdown() {
-    dropdown.classList.toggle('hidden');
-  }
-
-  function closeDropdown() {
-    dropdown.classList.add('hidden');
-  }
-
-  // Init
-  const currentTheme = getStoredTheme();
-  updateActiveState(currentTheme);
-
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleDropdown();
-  });
-
-  themeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      selectTheme(button.dataset.themeValue);
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!container.contains(e.target)) {
-      closeDropdown();
+    function getStoredTheme() {
+        if (typeof localStorage === 'undefined') return 'system';
+        const s = localStorage.getItem(STORAGE_KEY);
+        return s === 'light' || s === 'dark' || s === 'system' ? s : 'system';
     }
-  });
 
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  mq.addEventListener('change', () => {
-    if (getStoredTheme() === 'system') {
-      applyTheme('system');
+    function applyTheme(theme) {
+        const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)',
+        ).matches;
+        const dark = theme === 'dark' || (theme === 'system' && prefersDark);
+        document.documentElement.classList.toggle('dark', dark);
     }
-  });
+
+    function updateActiveState(theme) {
+        Object.values(icons).forEach((icon) => icon.classList.add('hidden'));
+        if (icons[theme]) icons[theme].classList.remove('hidden');
+
+        themeButtons.forEach((button) => {
+            if (button.dataset.themeValue === theme) {
+                button.classList.add(
+                    'text-primary',
+                    'font-medium',
+                    'bg-surface-container-highest',
+                );
+            } else {
+                button.classList.remove(
+                    'text-primary',
+                    'font-medium',
+                    'bg-surface-container-highest',
+                );
+            }
+        });
+    }
+
+    function selectTheme(chosen) {
+        localStorage.setItem(STORAGE_KEY, chosen);
+        applyTheme(chosen);
+        updateActiveState(chosen);
+        closeDropdown();
+    }
+
+    function toggleDropdown() {
+        dropdown.classList.toggle('hidden');
+    }
+
+    function closeDropdown() {
+        dropdown.classList.add('hidden');
+    }
+
+    const currentTheme = getStoredTheme();
+    updateActiveState(currentTheme);
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+    });
+
+    themeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selectTheme(button.dataset.themeValue);
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    mq.addEventListener('change', () => {
+        if (getStoredTheme() === 'system') {
+            applyTheme('system');
+        }
+    });
 </script>
