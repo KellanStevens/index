@@ -1,6 +1,7 @@
 ---
-import '../styles/global.css';
-import themeInit from '../scripts/theme-init.js?raw';
+/* eslint-disable astro/no-set-html-directive */
+import '@/styles/global.css';
+import themeInit from '@/scripts/theme-init.js?raw';
 import SplashScreen from '@/components/SplashScreen.astro';
 
 interface Props {
@@ -20,11 +21,10 @@ const { title, description = 'Resume' } = Astro.props;
         <meta name="description" content={description} />
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
-        <!-- eslint-disable-next-line astro/no-set-html-directive -->
         <script is:inline set:html={themeInit} />
     </head>
     <body class="bg-background min-h-screen font-sans antialiased">
-        <!-- <SplashScreen /> -->
+        <SplashScreen />
         <slot />
     </body>
 </html>
