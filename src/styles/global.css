@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
 @import "@fontsource-variable/jetbrains-mono";
 
 @font-face {
@@ -11,111 +12,82 @@
   font-display: swap;
 }
 
-@custom-variant dark (&:is(.dark *));
-
-:root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0.008 326);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0.008 326);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0.008 326);
-    --primary: oklch(0.212 0.019 322.12);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.96 0.003 325.6);
-    --secondary-foreground: oklch(0.212 0.019 322.12);
-    --muted: oklch(0.96 0.003 325.6);
-    --muted-foreground: oklch(0.542 0.034 322.5);
-    --accent: oklch(0.96 0.003 325.6);
-    --accent-foreground: oklch(0.212 0.019 322.12);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0.005 325.62);
-    --input: oklch(0.922 0.005 325.62);
-    --ring: oklch(0.711 0.019 323.02);
-    --chart-1: oklch(0.845 0.143 164.978);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.596 0.145 163.225);
-    --chart-4: oklch(0.508 0.118 165.612);
-    --chart-5: oklch(0.432 0.095 166.913);
-    --radius: 0.45rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0.008 326);
-    --sidebar-primary: oklch(0.212 0.019 322.12);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.96 0.003 325.6);
-    --sidebar-accent-foreground: oklch(0.212 0.019 322.12);
-    --sidebar-border: oklch(0.922 0.005 325.62);
-    --sidebar-ring: oklch(0.711 0.019 323.02);
-}
-
-.dark {
-    --background: oklch(0.145 0.008 326);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.212 0.019 322.12);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.212 0.019 322.12);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0.005 325.62);
-    --primary-foreground: oklch(0.212 0.019 322.12);
-    --secondary: oklch(0.263 0.024 320.12);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.263 0.024 320.12);
-    --muted-foreground: oklch(0.711 0.019 323.02);
-    --accent: oklch(0.263 0.024 320.12);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.542 0.034 322.5);
-    --chart-1: oklch(0.845 0.143 164.978);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.596 0.145 163.225);
-    --chart-4: oklch(0.508 0.118 165.612);
-    --chart-5: oklch(0.432 0.095 166.913);
-    --sidebar: oklch(0.212 0.019 322.12);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.263 0.024 320.12);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.542 0.034 322.5);
-}
-
 @theme inline {
     --font-kaftan: 'Kaftan', serif;
+    --font-sans: 'Inter Variable', sans-serif;
     --font-mono: 'JetBrains Mono Variable', monospace;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
+
+    /* Custom Lumina Colors */
+    --color-surface: var(--surface);
+    --color-surface-bright: var(--surface-bright);
+    --color-surface-dim: var(--surface-dim);
+    --color-surface-container-lowest: var(--surface-container-lowest);
+    --color-surface-container-low: var(--surface-container-low);
+    --color-surface-container: var(--surface-container);
+    --color-surface-container-high: var(--surface-container-high);
+    --color-surface-container-highest: var(--surface-container-highest);
+    --color-surface-variant: var(--surface-variant);
+    --color-on-surface: var(--on-surface);
+    --color-on-surface-variant: var(--on-surface-variant);
+    --color-inverse-surface: var(--inverse-surface);
+    --color-inverse-on-surface: var(--inverse-on-surface);
+
     --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
+    --color-on-primary: var(--on-primary);
+    --color-primary-container: var(--primary-container);
+    --color-on-primary-container: var(--on-primary-container);
+    --color-primary-dim: var(--primary-dim);
+    --color-primary-fixed: var(--primary-fixed);
+    --color-primary-fixed-dim: var(--primary-fixed-dim);
+    --color-on-primary-fixed: var(--on-primary-fixed);
+    --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+    --color-inverse-primary: var(--inverse-primary);
+
+    --color-secondary: var(--secondary);
+    --color-on-secondary: var(--on-secondary);
+    --color-secondary-container: var(--secondary-container);
+    --color-on-secondary-container: var(--on-secondary-container);
+    --color-secondary-dim: var(--secondary-dim);
+    --color-secondary-fixed: var(--secondary-fixed);
+    --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+    --color-on-secondary-fixed: var(--on-secondary-fixed);
+    --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+
+    --color-tertiary: var(--tertiary);
+    --color-on-tertiary: var(--on-tertiary);
+    --color-tertiary-container: var(--tertiary-container);
+    --color-on-tertiary-container: var(--on-tertiary-container);
+    --color-tertiary-dim: var(--tertiary-dim);
+    --color-tertiary-fixed: var(--tertiary-fixed);
+    --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+    --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+    --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+
+    --color-error: var(--error);
+    --color-on-error: var(--on-error);
+    --color-error-container: var(--error-container);
+    --color-on-error-container: var(--on-error-container);
+    --color-error-dim: var(--error-dim);
+    --color-outline: var(--outline);
+    --color-outline-variant: var(--outline-variant);
+
+    /* Map back Shadcn tokens explicitly to Lumina */
+    --color-background: var(--surface);
+    --color-foreground: var(--on-surface);
+    --color-card: var(--surface-container-lowest);
+    --color-card-foreground: var(--on-surface);
+    --color-popover: var(--surface-container-lowest);
+    --color-popover-foreground: var(--on-surface);
+    --color-muted: var(--surface-container-high);
+    --color-muted-foreground: var(--on-surface-variant);
+    --color-accent: var(--surface-container-high);
+    --color-accent-foreground: var(--on-surface);
+    --color-destructive: var(--error);
+    --color-destructive-foreground: var(--on-error);
+    --color-border: var(--outline-variant);
+    --color-input: var(--outline-variant);
+    --color-ring: var(--primary);
+
     --radius-sm: calc(var(--radius) * 0.6);
     --radius-md: calc(var(--radius) * 0.8);
     --radius-lg: var(--radius);
@@ -125,14 +97,166 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+:root {
+    /* Base Radius: xl from Lumina */
+    --radius: 0.75rem;
+
+    /* Lumina Surface & Background */
+    --surface: #f9f9fb;
+    --surface-bright: #f9f9fb;
+    --surface-dim: #d3dbe2;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f2f4f6;
+    --surface-container: #ebeef2;
+    --surface-container-high: #e4e9ee;
+    --surface-container-highest: #dde3e9;
+    --surface-variant: #dde3e9;
+    --on-surface: #2d3338;
+    --on-surface-variant: #596065;
+    --inverse-surface: #0c0e10;
+    --inverse-on-surface: #9c9d9f;
+
+    /* Lumina Primary */
+    --primary: #5f5e60;
+    --on-primary: #faf7f9;
+    --primary-container: #e4e2e4;
+    --on-primary-container: #525154;
+    --primary-dim: #535254;
+    --primary-fixed: #e4e2e4;
+    --primary-fixed-dim: #d6d3d6;
+    --on-primary-fixed: #3f3f41;
+    --on-primary-fixed-variant: #5c5b5d;
+    --inverse-primary: #ffffff;
+
+    /* Lumina Secondary */
+    --secondary: #5e5f63;
+    --on-secondary: #faf8fe;
+    --secondary-container: #e3e2e7;
+    --on-secondary-container: #515156;
+    --secondary-dim: #525357;
+    --secondary-fixed: #e3e2e7;
+    --secondary-fixed-dim: #d5d4d9;
+    --on-secondary-fixed: #3e3f43;
+    --on-secondary-fixed-variant: #5b5b60;
+
+    /* Lumina Tertiary */
+    --tertiary: #5d5f63;
+    --on-tertiary: #f9f8fd;
+    --tertiary-container: #f3f3f8;
+    --on-tertiary-container: #5a5c60;
+    --tertiary-dim: #515357;
+    --tertiary-fixed: #f3f3f8;
+    --tertiary-fixed-dim: #e5e5ea;
+    --on-tertiary-fixed: #484a4e;
+    --on-tertiary-fixed-variant: #65666a;
+
+    /* Lumina Error & Utilities */
+    --error: #9f403d;
+    --on-error: #fff7f6;
+    --error-container: #fe8983;
+    --on-error-container: #752121;
+    --error-dim: #4e0309;
+    --outline: #757c81;
+    --outline-variant: #acb3b8;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+.dark {
+    /* Lumina Surface & Background - Dark Mode */
+    --surface: #121212;
+    --surface-bright: #242424;
+    --surface-dim: #0a0a0a;
+    --surface-container-lowest: #000000;
+    --surface-container-low: #171717;
+    --surface-container: #1c1c1c;
+    --surface-container-high: #242424;
+    --surface-container-highest: #2b2b2b;
+    --surface-variant: #2b2b2b;
+    --on-surface: #e8e8e8;
+    --on-surface-variant: #999999;
+    --inverse-surface: #e8e8e8;
+    --inverse-on-surface: #121212;
+
+    /* Lumina Primary */
+    --primary: #a3a3a5;
+    --on-primary: #121212;
+    --primary-container: #3d3d3f;
+    --on-primary-container: #d6d6d8;
+    --primary-dim: #8b8b8d;
+    --primary-fixed: #e4e2e4;
+    --primary-fixed-dim: #d6d3d6;
+    --on-primary-fixed: #1e1e1e;
+    --on-primary-fixed-variant: #333333;
+    --inverse-primary: #5f5e60;
+
+    /* Lumina Secondary */
+    --secondary: #a2a2a5;
+    --on-secondary: #121212;
+    --secondary-container: #3c3c3f;
+    --on-secondary-container: #d5d5d8;
+    --secondary-dim: #8a8a8d;
+    --secondary-fixed: #e3e2e7;
+    --secondary-fixed-dim: #d5d4d9;
+    --on-secondary-fixed: #1e1e1e;
+    --on-secondary-fixed-variant: #333333;
+
+    /* Lumina Tertiary */
+    --tertiary: #a1a2a5;
+    --on-tertiary: #121212;
+    --tertiary-container: #3b3c3f;
+    --on-tertiary-container: #d4d5d8;
+    --tertiary-dim: #898a8d;
+    --tertiary-fixed: #f3f3f8;
+    --tertiary-fixed-dim: #e5e5ea;
+    --on-tertiary-fixed: #1e1e1e;
+    --on-tertiary-fixed-variant: #333333;
+
+    /* Lumina Error & Utilities */
+    --error: #ffb4ab;
+    --on-error: #690005;
+    --error-container: #93000a;
+    --on-error-container: #ffdad6;
+    --error-dim: #ff897d;
+    --outline: #676b6e;
+    --outline-variant: #3d4144;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    }
+  }
   body {
-    @apply bg-background text-foreground;
-    }
+    @apply bg-surface text-on-surface tracking-tight;
+  }
   html {
-    @apply font-mono;
-    }
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  /* Typography Classes */
+  .display-lg {
+    @apply text-5xl md:text-7xl font-bold tracking-tighter leading-tight;
+  }
+
+  .display-md {
+    @apply text-4xl md:text-6xl font-semibold tracking-tighter leading-tight;
+  }
+
+  .headline-lg {
+    @apply text-3xl md:text-5xl font-semibold tracking-tight leading-tight;
+  }
+
+  .body-lg {
+    @apply text-lg leading-relaxed text-on-surface-variant;
+  }
+
+  .label-md {
+    @apply text-sm uppercase tracking-[0.05em] font-medium text-on-surface-variant;
+  }
+
+  .label-sm {
+    @apply text-xs uppercase tracking-[0.05em] font-medium text-on-surface-variant;
+  }
 }
