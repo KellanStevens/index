@@ -7,55 +7,51 @@ import DockNav from '@/components/DockNav.astro';
 import Footer from '@/components/Footer.astro';
 import ThemeToggle from '@/components/ThemeToggle.astro';
 import {
-  profile,
-  about,
-  workExperience,
-  education,
-  skills,
+    profile,
+    about,
+    workExperience,
+    education,
+    skills,
 } from '@/data/content';
 
-const experienceItems = workExperience.map(job => ({
-  title: job.role,
-  subtitle: `${job.company} • ${job.employmentType}`,
-  dateRange: job.dateRange,
-  description: job.description,
-  badges: [job.location]
+const experienceItems = workExperience.map((job) => ({
+    title: job.role,
+    subtitle: `${job.company} • ${job.employmentType}`,
+    dateRange: job.dateRange,
+    description: job.description,
+    badges: [job.location],
 }));
 
-const educationItems = education.map(edu => ({
-  title: edu.degree,
-  subtitle: edu.school,
-  dateRange: edu.dateRange
+const educationItems = education.map((edu) => ({
+    title: edu.degree,
+    subtitle: edu.school,
+    dateRange: edu.dateRange,
 }));
 ---
 
 <BaseLayout
-  title={`${profile.name}`}
-  description={about.substring(0, 150) + '...'}
+    title={`${profile.name}`}
+    description={about.substring(0, 150) + '...'}
 >
-  <div class="fixed top-8 right-8 z-50">
-    <ThemeToggle />
-  </div>
-  
-  <main class="relative pb-40">
-    <Hero profile={profile} about={about} />
-    
-    <Timeline 
-      id="experience" 
-      title="Work Experience" 
-      items={experienceItems} 
-    />
-    
-    <Timeline 
-      id="education" 
-      title="Education" 
-      items={educationItems} 
-    />
-    
-    <SkillBadges skills={skills} />
-    
-    <DockNav />
-  </main>
-  
-  <Footer />
+    <div class="fixed top-8 right-8 z-50">
+        <ThemeToggle />
+    </div>
+
+    <main class="relative pb-40">
+        <Hero profile={profile} about={about} />
+
+        <Timeline
+            id="experience"
+            title="Work Experience"
+            items={experienceItems}
+        />
+
+        <Timeline id="education" title="Education" items={educationItems} />
+
+        <SkillBadges skills={skills} />
+
+        <DockNav />
+    </main>
+
+    <Footer />
 </BaseLayout>

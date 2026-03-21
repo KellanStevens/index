@@ -9,73 +9,87 @@ const firstLetters = firstName.split('');
 const lastLetters = lastName ? (' ' + lastName).split('') : [];
 ---
 
-<footer class="mt-32 pt-24 pb-48 w-full overflow-hidden flex justify-center items-center bg-surface-container-lowest border-t border-outline-variant/10">
-  <div class="w-full px-[12px] flex justify-center text-center">
-    <h2 id="footer-name" class="font-kaftan leading-none tracking-tight flex justify-center select-none text-on-surface whitespace-nowrap overflow-hidden">
-
-      <span class="flex">
-        {firstLetters.map((letter) => (
-          <span class="relative inline-flex justify-center items-center">
-            <span class="invisible">{letter}</span>
-            <span class="hover-letter absolute inset-0 flex items-center justify-center transition-all duration-75 cursor-default">{letter}</span>
-          </span>
-        ))}
-      </span>
-
-      <span class="hidden md:flex">
-        {lastLetters.map((letter) => (
-          letter === ' ' ?
-            <span class="w-[3vw]">&nbsp;</span> :
-            <span class="relative inline-flex justify-center items-center">
-              <span class="invisible">{letter}</span>
-              <span class="hover-letter absolute inset-0 flex items-center justify-center transition-all duration-75 cursor-default">{letter}</span>
+<footer
+    class="bg-surface-container-lowest border-outline-variant/10 mt-32 flex w-full items-center justify-center overflow-hidden border-t pt-24 pb-48"
+>
+    <div class="flex w-full justify-center px-[12px] text-center">
+        <h2
+            id="footer-name"
+            class="font-kaftan text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
+        >
+            <span class="flex">
+                {
+                    firstLetters.map((letter) => (
+                        <span class="relative inline-flex items-center justify-center">
+                            <span class="invisible">{letter}</span>
+                            <span class="hover-letter absolute inset-0 flex cursor-default items-center justify-center transition-all duration-75">
+                                {letter}
+                            </span>
+                        </span>
+                    ))
+                }
             </span>
-        ))}
-      </span>
 
-    </h2>
-  </div>
+            <span class="hidden md:flex">
+                {
+                    lastLetters.map((letter) =>
+                        letter === ' ' ? (
+                            <span class="w-[3vw]">&nbsp;</span>
+                        ) : (
+                            <span class="relative inline-flex items-center justify-center">
+                                <span class="invisible">{letter}</span>
+                                <span class="hover-letter absolute inset-0 flex cursor-default items-center justify-center transition-all duration-75">
+                                    {letter}
+                                </span>
+                            </span>
+                        ),
+                    )
+                }
+            </span>
+        </h2>
+    </div>
 </footer>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    function fitText() {
-      const text = document.getElementById('footer-name');
-      if (!text) return;
+    document.addEventListener('DOMContentLoaded', () => {
+        function fitText() {
+            const text = document.getElementById('footer-name');
+            if (!text) return;
 
-      text.style.width = 'max-content';
-      text.style.fontSize = '100px';
+            text.style.width = 'max-content';
+            text.style.fontSize = '100px';
 
-      const intrinsicWidth = text.getBoundingClientRect().width;
-      const targetWidth = window.innerWidth - 24;
-      const newFontSize = (targetWidth / intrinsicWidth) * 100;
+            const intrinsicWidth = text.getBoundingClientRect().width;
+            const targetWidth = window.innerWidth - 24;
+            const newFontSize = (targetWidth / intrinsicWidth) * 100;
 
-      text.style.fontSize = `${Math.floor(newFontSize * 100) / 100}px`;
-      text.style.width = 'auto';
-    }
+            text.style.fontSize = `${Math.floor(newFontSize * 100) / 100}px`;
+            text.style.width = 'auto';
+        }
 
-    fitText();
-    window.addEventListener('resize', fitText);
+        fitText();
+        window.addEventListener('resize', fitText);
 
-    const letters = document.querySelectorAll('.hover-letter');
-    const fonts = [
-      'Impact, sans-serif',
-      'Bradley Hand, cursive',
-      'Brush Script MT, cursive',
-      'Luminari, fantasy',
-      'Pilowlava',
-      '"Sirin Stencil"'
-    ];
+        const letters = document.querySelectorAll('.hover-letter');
+        const fonts = [
+            'Impact, sans-serif',
+            'Bradley Hand, cursive',
+            'Brush Script MT, cursive',
+            'Luminari, fantasy',
+            'Pilowlava',
+            '"Sirin Stencil"',
+        ];
 
-    letters.forEach(letter => {
-      letter.addEventListener('mouseenter', () => {
-        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-        letter.style.fontFamily = randomFont;
-      });
+        letters.forEach((letter) => {
+            letter.addEventListener('mouseenter', () => {
+                const randomFont =
+                    fonts[Math.floor(Math.random() * fonts.length)];
+                letter.style.fontFamily = randomFont;
+            });
 
-      letter.addEventListener('mouseleave', () => {
-        letter.style.fontFamily = '';
-      });
+            letter.addEventListener('mouseleave', () => {
+                letter.style.fontFamily = '';
+            });
+        });
     });
-  });
 </script>

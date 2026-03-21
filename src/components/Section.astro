@@ -1,16 +1,18 @@
 ---
 interface Props {
-  title: string;
-  id?: string;
-  class?: string;
+    title: string;
+    id?: string;
+    class?: string;
 }
 
 const { title, id, class: className = '' } = Astro.props;
 ---
 
 <section id={id} class:list={['space-y-4', className]}>
-  <h2 class="text-xl font-semibold tracking-tight text-foreground scroll-mt-6">
-    {title}
-  </h2>
-  <slot />
+    <h2
+        class="text-foreground scroll-mt-6 text-xl font-semibold tracking-tight"
+    >
+        {title}
+    </h2>
+    <slot />
 </section>
