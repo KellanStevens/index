@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import themeInit from '../scripts/theme-init.js?raw';
+import SplashScreen from '@/components/SplashScreen.astro';
 
 interface Props {
   title: string;
@@ -22,6 +23,7 @@ const { title, description = 'Resume' } = Astro.props;
     <script is:inline set:html={themeInit} />
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
+    <SplashScreen />
     <slot />
   </body>
 </html>
