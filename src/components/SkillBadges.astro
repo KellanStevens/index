@@ -1,0 +1,23 @@
+---
+interface Props {
+  skills: readonly string[];
+}
+
+const { skills } = Astro.props;
+---
+<section id="skills" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+    <div class="md:col-span-4">
+      <h2 class="label-md pt-2">Technical Stack</h2>
+    </div>
+    <div class="md:col-span-8">
+      <div class="flex flex-wrap gap-3">
+        {skills.map((skill) => (
+          <div class="px-6 py-3 bg-surface-container-lowest rounded-full body-lg text-on-surface hover:bg-surface-container-high hover:scale-105 transition-all duration-300 cursor-default shadow-sm border border-outline-variant/10">
+            {skill}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

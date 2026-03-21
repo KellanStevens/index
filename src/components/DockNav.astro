@@ -1,0 +1,50 @@
+---
+---
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+    <nav class="flex items-center gap-2 p-2 bg-surface/80 backdrop-blur-xl rounded-full shadow-[0_10px_40px_rgba(45,51,56,0.08)] border border-outline-variant/20">
+       <a href="#experience" class="dock-link px-6 py-3 rounded-full text-on-surface label-sm transition-all duration-300 hover:bg-surface-container">Experience</a>
+       <a href="#education" class="dock-link px-6 py-3 rounded-full text-on-surface label-sm transition-all duration-300 hover:bg-surface-container">Education</a>
+       <a href="#skills" class="dock-link px-6 py-3 rounded-full text-on-surface label-sm transition-all duration-300 hover:bg-surface-container">Skills</a>
+    </nav>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".dock-link");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px",
+      threshold: 0
+    };
+
+    const activateLink = (id) => {
+      navLinks.forEach((link) => {
+        link.classList.remove("bg-surface-container-highest", "shadow-[0_2px_10px_rgba(0,0,0,0.05)]", "text-primary");
+        if (link.getAttribute("href") === `#${id}`) {
+          link.classList.add("bg-surface-container-highest", "shadow-[0_2px_10px_rgba(0,0,0,0.05)]", "text-primary");
+        }
+      });
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activateLink(entry.target.getAttribute("id"));
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((sec) => observer.observe(sec));
+    
+    for (let sec of sections) {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.3) {
+        activateLink(sec.id);
+        break;
+      }
+    }
+  });
+</script>

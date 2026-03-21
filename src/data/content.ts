@@ -1,9 +1,8 @@
 export const profile = {
   name: 'Kellan Stevens',
-  title:
-    'Fullstack Software Engineer with expertise in PHP, Laravel, and modern web stacks, passionate about building scalable applications and mentoring developers.',
+  title: 'Fullstack Software Engineer with expertise in PHP, Laravel, and modern web stacks, passionate about building scalable applications.',
   location: 'Cape Town, South Africa',
-  email: 'linkedin@kellanstevens.com',
+  email: 'website@kellanstevens.com',
   linkedinUrl: 'https://linkedin.com/in/kellan-stevens',
   githubUrl: 'https://github.com/kellanstevens',
   initials: 'KS',
@@ -36,9 +35,9 @@ export const workExperience = [
     location: 'Cape Town, South Africa',
     dateRange: 'Jun 2025 - Present',
     company: 'City of Cape Town',
-    employmentType: 'Contract',
+    employmentType: 'Volunteer',
     description:
-      'Facilitate technical training and workshops, supporting digital transformation initiatives within municipal teams and promoting adoption of modern development practices.',
+      'Facilitate tech events, supporting an open and collaborative environment for developers, entrepreneurs and the likes.',
   },
   {
     role: 'Full Stack Software Engineer',
@@ -101,20 +100,13 @@ export const education = [
     school: 'WeThinkCode',
     dateRange: '2021 - 2022',
     degree: 'Higher National Diploma, Information Technology in Systems Development',
-  },
-  {
-    school: 'South African College School',
-    dateRange: '2016 - 2020',
-    degree: 'Matriculation: IT, Economics, Physics, Maths, English, Afrikaans',
-  },
+  }
 ] as const;
 
 export const skills = [
   'PHP',
   'Laravel',
   'Nuxt.js',
-  'TALL Stack',
-  'LAMP/LEMP Stacks',
   'React',
   'VueJS',
   'TypeScript',
