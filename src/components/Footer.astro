@@ -15,7 +15,7 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
     <div class="flex w-full justify-center px-[12px] text-center">
         <h2
             id="footer-name"
-            class="font-kaftan text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
+            class="font-kaftan text-[20vw] sm:text-[21vw] md:text-[11vw] lg:text-[11.5vw] xl:text-[12vw] text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
         >
             <span class="flex">
                 {
@@ -50,46 +50,4 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
     </div>
 </footer>
 
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-        function fitText() {
-            const text = document.getElementById('footer-name');
-            if (!text) return;
-
-            text.style.width = 'max-content';
-            text.style.fontSize = '100px';
-
-            const intrinsicWidth = text.getBoundingClientRect().width;
-            const targetWidth = window.innerWidth - 24;
-            const newFontSize = (targetWidth / intrinsicWidth) * 100;
-
-            text.style.fontSize = `${Math.floor(newFontSize * 100) / 100}px`;
-            text.style.width = 'auto';
-        }
-
-        fitText();
-        window.addEventListener('resize', fitText);
-
-        const letters = document.querySelectorAll('.hover-letter');
-        const fonts = [
-            'Impact, sans-serif',
-            'Bradley Hand, cursive',
-            'Brush Script MT, cursive',
-            'Luminari, fantasy',
-            'Pilowlava',
-            '"Sirin Stencil"',
-        ];
-
-        letters.forEach((letter) => {
-            letter.addEventListener('mouseenter', () => {
-                const randomFont =
-                    fonts[Math.floor(Math.random() * fonts.length)];
-                letter.style.fontFamily = randomFont;
-            });
-
-            letter.addEventListener('mouseleave', () => {
-                letter.style.fontFamily = '';
-            });
-        });
-    });
-</script>
+<script src="@/scripts/footer.ts"></script>
