@@ -9,7 +9,7 @@ export const profile = {
 } as const;
 
 export const about =
-    'Fullstack Software Engineer with extensive experience in PHP-based web development, specializing in Laravel and the TALL stack (Tailwind, Alpine JS, Laravel, Livewire). Proven track record in building and maintaining scalable web and mobile applications using React, Vue, and MySQL, while leading cross-functional teams and mentoring junior developers. Adept at Linux server management, CI/CD pipelines, automation scripting, and infrastructure security. Strong background in Agile methodologies and client-focused development, with hands-on experience in Proxmox virtualization and containerisation. Committed to continuous learning and improving developer productivity through tooling and best practices.';
+    'Fullstack Software Engineer with extensive experience in PHP-based web development, specializing in Laravel. Proven track record in building and maintaining scalable web and mobile applications using React, VueJS, MySQL. Adept at Linux server management, CI/CD pipelines, automation scripting, and infrastructure security. Strong background in Agile methodologies and client-focused development, with hands-on experience in Proxmox virtualization and containerisation. Committed to continuous learning and improving developer productivity through tooling and best practices.';
 
 export const workExperience = [
     {
