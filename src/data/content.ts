@@ -69,16 +69,6 @@ export const workExperience = [
             'Developed and maintained a SaaS platform using PHP, contributing to feature implementation, bug fixes, and client-facing solutions. Engaged directly with clients to understand requirements and deliver tailored solutions. Managed server maintenance, SSL certificates, and database operations. Utilized bash and batch scripting for internal automation and supported Microsoft SQL projects.',
     },
     {
-        role: 'Junior Software Developer',
-        location: 'London, England, United Kingdom',
-        dateRange: 'Jan 2023 - Dec 2023',
-        company: 'Thames Systems',
-        employmentType: 'Full-time',
-        logo: thamesSystemsLogo,
-        description:
-            'Supported development of PHP-based applications, participated in code reviews, and assisted in database design and deployment tasks. Gained exposure to full project lifecycle from requirement gathering to client demos, while learning modern development workflows and team collaboration practices.',
-    },
-    {
         role: 'Technical Mentor',
         location: 'Cape Town, South Africa',
         dateRange: 'Sep 2022 - Dec 2022',
