@@ -1,0 +1,3 @@
+[install]
+# Require packages to be at least 1 day old (86400 seconds)
+minimumReleaseAge = 86400
