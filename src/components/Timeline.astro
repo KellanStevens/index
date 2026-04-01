@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 interface TimelineItemProps {
     title: string;
@@ -31,8 +30,8 @@ const { title, id, items } = Astro.props;
                     <div class="group bg-surface-container-lowest hover:bg-surface-container-low rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
                         <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
                             <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-4">
-                                <Image
-                                    src={item.logo}
+                                <img
+                                    src={item.logo.src}
                                     alt={`${item.title} logo`}
                                     class="h-14 w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 group-hover:scale-105 shadow-sm"
                                     width={156}
