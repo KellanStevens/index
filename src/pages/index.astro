@@ -14,7 +14,23 @@ import {
     skills,
 } from '@/data/content';
 
-const experienceItems = workExperience.map((job) => ({
+const fullTimeExperience = workExperience.filter(
+    (job) => job.employmentType === 'Full-time'
+);
+const volunteerContractExperience = workExperience.filter(
+    (job) => job.employmentType !== 'Full-time'
+);
+
+const experienceItems = fullTimeExperience.map((job) => ({
+    title: job.role,
+    subtitle: `${job.company} • ${job.employmentType}`,
+    dateRange: job.dateRange,
+    description: job.description,
+    badges: [job.location],
+    logo: job.logo,
+}));
+
+const volunteerContractItems = volunteerContractExperience.map((job) => ({
     title: job.role,
     subtitle: `${job.company} • ${job.employmentType}`,
     dateRange: job.dateRange,
@@ -46,6 +62,12 @@ const educationItems = education.map((edu) => ({
             id="experience"
             title="Work Experience"
             items={experienceItems}
+        />
+
+        <Timeline
+            id="additional-experience"
+            title="Additional Experience"
+            items={volunteerContractItems}
         />
 
         <Timeline id="education" title="Education" items={educationItems} />
