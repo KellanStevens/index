@@ -1,4 +1,4 @@
-function initFooter() {
+function initFontHover() {
     const letters = document.querySelectorAll<HTMLElement>('.hover-letter');
     const fonts = [
         'Impact, sans-serif',
@@ -22,7 +22,7 @@ function initFooter() {
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFooter);
+    document.addEventListener('DOMContentLoaded', initFontHover);
 } else {
-    initFooter();
+    initFontHover();
 }
