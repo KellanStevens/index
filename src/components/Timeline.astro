@@ -7,6 +7,7 @@ interface TimelineItemProps {
     description?: string;
     badges?: readonly string[];
     logo: ImageMetadata;
+    stack?: readonly { name: string; image?: string }[];
 }
 
 interface Props {
@@ -27,17 +28,17 @@ const { title, id, items } = Astro.props;
         <div class="space-y-16 md:col-span-8">
             {
                 items.map((item) => (
-                    <div class="group bg-surface-container-lowest hover:bg-surface-container-low rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
+                    <div class="group bg-surface-container-lowest rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
                         <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
                             <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-4">
                                 <img
                                     src={item.logo.src}
                                     alt={`${item.title} logo`}
-                                    class="h-14 w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 group-hover:scale-105 shadow-sm"
+                                    class="ring-outline-variant/30 h-14 w-14 shrink-0 rounded-full bg-white object-cover shadow-sm ring-1 transition-transform duration-500"
                                     width={156}
                                     height={156}
                                 />
-                                <span class="label-sm text-on-surface-variant whitespace-nowrap pt-1">
+                                <span class="label-sm text-on-surface-variant pt-1 whitespace-nowrap">
                                     {item.dateRange}
                                 </span>
                             </div>
@@ -52,7 +53,8 @@ const { title, id, items } = Astro.props;
                         </div>
 
                         {(item.description ||
-                            (item.badges && item.badges.length > 0)) && (
+                            (item.badges && item.badges.length > 0) ||
+                            (item.stack && item.stack.length > 0)) && (
                             <div class="md:pl-40">
                                 {item.description && (
                                     <p class="body-lg text-on-surface-variant mt-4 leading-relaxed">
@@ -65,6 +67,23 @@ const { title, id, items } = Astro.props;
                                             <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
                                                 {badge}
                                             </span>
+                                        ))}
+                                    </div>
+                                )}
+                                {item.stack && item.stack.length > 0 && (
+                                    <div class="mt-6 flex flex-wrap gap-3">
+                                        {item.stack.map((tech) => (
+                                            <div class="bg-surface-container text-on-surface border-outline-variant/30 hover:bg-surface-container-high hover:border-outline-variant/60 flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-xs transition-colors">
+                                                {tech.image && (
+                                                    <img
+                                                        src={tech.image}
+                                                        alt={tech.name}
+                                                        class="h-4 w-4 object-contain opacity-80"
+                                                        loading="lazy"
+                                                    />
+                                                )}
+                                                <span>{tech.name}</span>
+                                            </div>
                                         ))}
                                     </div>
                                 )}
