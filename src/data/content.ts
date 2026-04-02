@@ -20,7 +20,7 @@ import wethinkcodeLogo from '@/images/wethinkcode.jpg';
 export const workExperience = [
     {
         role: 'Full Stack Software Engineer',
-        location: 'Cape Town, South Africa',
+        location: 'Hybrid',
         dateRange: 'Jan 2026 - Present',
         company: 'Tillo',
         employmentType: 'Full-time',
@@ -76,7 +76,7 @@ export const workExperience = [
         role: 'Facilitator',
         location: 'Cape Town, South Africa',
         dateRange: 'Jun 2025 - Present',
-        company: 'City of Cape Town',
+        company: 'Indie Hackers | Cape Town',
         employmentType: 'Volunteer',
         logo: indieHackersLogo,
         description:
@@ -85,7 +85,7 @@ export const workExperience = [
     },
     {
         role: 'Full Stack Software Engineer',
-        location: 'Cape Town, South Africa',
+        location: 'Hybrid',
         dateRange: 'Mar 2024 - Dec 2025',
         company: 'Tripco (Lekkeslaap)',
         employmentType: 'Full-time',
@@ -141,7 +141,7 @@ export const workExperience = [
     },
     {
         role: 'Software Developer',
-        location: 'London, England, United Kingdom',
+        location: 'Remote',
         dateRange: 'Jan 2023 - Feb 2024',
         company: 'Thames Systems',
         employmentType: 'Full-time',
@@ -223,7 +223,11 @@ export const education = [
             },
             {
                 name: 'Java',
-                image: 'https://cdn.simpleicons.org/java',
+                image: 'https://icon.icepanel.io/Technology/svg/Java.svg',
+            },
+            {
+                name: 'Git',
+                image: 'https://cdn.simpleicons.org/git',
             },
         ],
     },
