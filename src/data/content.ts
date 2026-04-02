@@ -25,8 +25,7 @@ export const workExperience = [
         company: 'Tillo',
         employmentType: 'Full-time',
         logo: tilloLogo,
-        description:
-            'Develop and maintain web and mobile applications using React, TypeScript, Vue, PHP (Laravel), and MySQL. Lead mobile development initiatives, ensuring performance, scalability, and user experience. Build automation scripts for internal workflows including content translation. Collaborate with cross-functional teams to design and optimize features. Improve site styling and responsiveness. Mentor new team members and support infrastructure improvements including CI/CD pipelines, data center migrations, and security hardening. Report progress to stakeholders and enhance team tooling for productivity.',
+        description: '',
         stack: [
             {
                 name: 'Laravel',
@@ -92,7 +91,7 @@ export const workExperience = [
         employmentType: 'Full-time',
         logo: tripcoLogo,
         description:
-            'Developed and maintained full-stack applications using PHP (Laravel), React, and MySQL. Collaborated on feature design, deployment, and system optimization. Contributed to backend architecture and frontend enhancements to improve user engagement and system reliability.',
+            'Developed web and mobile apps using React, Vue, PHP (Laravel), and MySQL. Led mobile initiatives, optimizing performance and UX. Built automation scripts, and drove infrastructure improvements, including CI/CD pipelines and security hardening.',
         stack: [
             {
                 name: 'Laravel',
@@ -148,7 +147,7 @@ export const workExperience = [
         employmentType: 'Full-time',
         logo: thamesSystemsLogo,
         description:
-            'Developed and maintained a SaaS platform using PHP, contributing to feature implementation, bug fixes, and client-facing solutions. Engaged directly with clients to understand requirements and deliver tailored solutions. Managed server maintenance, SSL certificates, and database operations. Utilized bash and batch scripting for internal automation and supported Microsoft SQL projects.',
+            'Developed and maintained a SaaS platform, contributing to feature implementation, bug fixes, and client-facing solutions. Engaged directly with clients to understand requirements and deliver tailored solutions. Managed server maintenance, SSL certificates, and database operations. Utilized bash and batch scripting for internal automation and supported Microsoft SQL projects.',
         stack: [
             {
                 name: 'PHP',
