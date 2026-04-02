@@ -16,6 +16,7 @@ import indieHackersLogo from '@/images/indie-hackers.jpeg';
 import tripcoLogo from '@/images/tripco.jpeg';
 import thamesSystemsLogo from '@/images/thames-systems.jpeg';
 import wethinkcodeLogo from '@/images/wethinkcode.jpg';
+import graduationPhoto from '@/images/graduation.jpeg';
 
 export const workExperience = [
     {
@@ -230,6 +231,7 @@ export const education = [
                 image: 'https://cdn.simpleicons.org/git',
             },
         ],
+        image: graduationPhoto,
     },
 ] as const;
 

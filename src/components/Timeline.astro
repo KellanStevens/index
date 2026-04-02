@@ -8,6 +8,7 @@ interface TimelineItemProps {
     badges?: readonly string[];
     logo: ImageMetadata;
     stack?: readonly { name: string; image?: string }[];
+    image?: ImageMetadata;
 }
 
 interface Props {
@@ -28,20 +29,21 @@ const { title, id, items } = Astro.props;
         <div class="space-y-16 md:col-span-8">
             {
                 items.map((item) => (
-                    <div class="group bg-surface-container-lowest rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)]">
-                        <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
-                            <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-4">
-                                <img
-                                    src={item.logo.src}
-                                    alt={`${item.title} logo`}
-                                    class="ring-outline-variant/30 h-14 w-14 shrink-0 rounded-full bg-white object-cover shadow-sm ring-1 transition-transform duration-500"
-                                    width={156}
-                                    height={156}
-                                />
-                                <span class="label-sm text-on-surface-variant pt-1 whitespace-nowrap">
-                                    {item.dateRange}
-                                </span>
-                            </div>
+                    <div class="group bg-surface-container-lowest rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)] flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+                        <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-4 shrink-0">
+                            <img
+                                src={item.logo.src}
+                                alt={`${item.title} logo`}
+                                class="h-14 w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 shadow-sm"
+                                width={156}
+                                height={156}
+                            />
+                            <span class="label-sm text-on-surface-variant whitespace-nowrap pt-1">
+                                {item.dateRange}
+                            </span>
+                        </div>
+
+                        <div class="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8">
                             <div class="flex-1">
                                 <h3 class="headline-lg mb-1 text-2xl md:text-3xl">
                                     {item.title}
@@ -49,25 +51,24 @@ const { title, id, items } = Astro.props;
                                 <div class="body-lg text-primary">
                                     {item.subtitle}
                                 </div>
-                            </div>
-                        </div>
 
-                        {(item.description ||
-                            (item.badges && item.badges.length > 0) ||
-                            (item.stack && item.stack.length > 0)) && (
-                            <div class="md:pl-40">
-                                {item.description && (
-                                    <p class="body-lg text-on-surface-variant mt-4 leading-relaxed">
-                                        {item.description}
-                                    </p>
-                                )}
-                                {item.badges && item.badges.length > 0 && (
-                                    <div class="mt-6 flex flex-wrap gap-2">
-                                        {item.badges.map((badge: string) => (
-                                            <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
-                                                {badge}
-                                            </span>
-                                        ))}
+                                {(item.description ||
+                                    (item.badges && item.badges.length > 0)) && (
+                                    <div class="mt-4">
+                                        {item.description && (
+                                            <p class="body-lg text-on-surface-variant leading-relaxed">
+                                                {item.description}
+                                            </p>
+                                        )}
+                                        {item.badges && item.badges.length > 0 && (
+                                            <div class="mt-6 flex flex-wrap gap-2">
+                                                {item.badges.map((badge: string) => (
+                                                    <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
+                                                        {badge}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                                 {item.stack && item.stack.length > 0 && (
@@ -88,7 +89,19 @@ const { title, id, items } = Astro.props;
                                     </div>
                                 )}
                             </div>
-                        )}
+
+                            {item.image && (
+                                <div class="lg:w-1/2 overflow-hidden rounded-2xl shadow-sm border border-outline-variant/30 shrink-0 lg:self-stretch flex">
+                                    <img
+                                        src={item.image.src}
+                                        alt={`${item.title} image`}
+                                        width={item.image.width}
+                                        height={item.image.height}
+                                        class="w-full h-full object-cover block"
+                                    />
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ))
             }
