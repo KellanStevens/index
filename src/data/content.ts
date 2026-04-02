@@ -20,13 +20,46 @@ import wethinkcodeLogo from '@/images/wethinkcode.jpg';
 export const workExperience = [
     {
         role: 'Full Stack Software Engineer',
-        location: 'Cape Town, South Africa',
+        location: 'Hybrid',
         dateRange: 'Jan 2026 - Present',
         company: 'Tillo',
         employmentType: 'Full-time',
         logo: tilloLogo,
-        description:
-            'Develop and maintain web and mobile applications using React, TypeScript, Vue, PHP (Laravel), and MySQL. Lead mobile development initiatives, ensuring performance, scalability, and user experience. Build automation scripts for internal workflows including content translation. Collaborate with cross-functional teams to design and optimize features. Improve site styling and responsiveness. Mentor new team members and support infrastructure improvements including CI/CD pipelines, data center migrations, and security hardening. Report progress to stakeholders and enhance team tooling for productivity.',
+        description: '',
+        stack: [
+            {
+                name: 'Laravel',
+                image: 'https://cdn.simpleicons.org/laravel',
+            },
+            {
+                name: 'PHP',
+                image: 'https://cdn.simpleicons.org/php',
+            },
+            {
+                name: 'Nuxt',
+                image: 'https://cdn.simpleicons.org/nuxt',
+            },
+            {
+                name: 'Vue',
+                image: 'https://cdn.simpleicons.org/vuedotjs',
+            },
+            {
+                name: 'TypeScript',
+                image: 'https://cdn.simpleicons.org/typescript',
+            },
+            {
+                name: 'Inertia',
+                image: 'https://cdn.simpleicons.org/inertia',
+            },
+            {
+                name: 'Redis',
+                image: 'https://cdn.simpleicons.org/redis',
+            },
+            {
+                name: 'MySQL',
+                image: 'https://cdn.simpleicons.org/mysql',
+            },
+        ],
     },
     {
         role: 'Committee Member',
@@ -37,36 +70,110 @@ export const workExperience = [
         logo: indieHackersLogo,
         description:
             'Actively participate in community-driven tech events and initiatives, fostering collaboration and knowledge sharing among local developers and entrepreneurs.',
+        stack: [],
     },
     {
         role: 'Facilitator',
         location: 'Cape Town, South Africa',
         dateRange: 'Jun 2025 - Present',
-        company: 'City of Cape Town',
+        company: 'Indie Hackers | Cape Town',
         employmentType: 'Volunteer',
         logo: indieHackersLogo,
         description:
             'Facilitate tech events, supporting an open and collaborative environment for developers, entrepreneurs and the likes.',
+        stack: [],
     },
     {
         role: 'Full Stack Software Engineer',
-        location: 'Cape Town, South Africa',
+        location: 'Hybrid',
         dateRange: 'Mar 2024 - Dec 2025',
         company: 'Tripco (Lekkeslaap)',
         employmentType: 'Full-time',
         logo: tripcoLogo,
         description:
-            'Developed and maintained full-stack applications using PHP (Laravel), React, and MySQL. Collaborated on feature design, deployment, and system optimization. Contributed to backend architecture and frontend enhancements to improve user engagement and system reliability.',
+            'Developed web and mobile apps using React, Vue, PHP (Laravel), and MySQL. Led mobile initiatives, optimizing performance and UX. Built automation scripts, and drove infrastructure improvements, including CI/CD pipelines and security hardening.',
+        stack: [
+            {
+                name: 'Laravel',
+                image: 'https://cdn.simpleicons.org/laravel',
+            },
+            {
+                name: 'PHP',
+                image: 'https://cdn.simpleicons.org/php',
+            },
+            {
+                name: 'React',
+                image: 'https://cdn.simpleicons.org/react',
+            },
+            {
+                name: 'TypeScript',
+                image: 'https://cdn.simpleicons.org/typescript',
+            },
+            {
+                name: 'Vue',
+                image: 'https://cdn.simpleicons.org/vuedotjs',
+            },
+            {
+                name: 'Alpine.js',
+                image: 'https://cdn.simpleicons.org/alpinedotjs',
+            },
+            {
+                name: 'Inertia',
+                image: 'https://cdn.simpleicons.org/inertia',
+            },
+            {
+                name: 'Redis',
+                image: 'https://cdn.simpleicons.org/redis',
+            },
+            {
+                name: 'Nginx',
+                image: 'https://cdn.simpleicons.org/nginx',
+            },
+            {
+                name: 'MySQL',
+                image: 'https://cdn.simpleicons.org/mysql',
+            },
+            {
+                name: 'Docker',
+                image: 'https://cdn.simpleicons.org/docker',
+            },
+        ],
     },
     {
         role: 'Software Developer',
-        location: 'London, England, United Kingdom',
+        location: 'Remote',
         dateRange: 'Jan 2023 - Feb 2024',
         company: 'Thames Systems',
         employmentType: 'Full-time',
         logo: thamesSystemsLogo,
         description:
-            'Developed and maintained a SaaS platform using PHP, contributing to feature implementation, bug fixes, and client-facing solutions. Engaged directly with clients to understand requirements and deliver tailored solutions. Managed server maintenance, SSL certificates, and database operations. Utilized bash and batch scripting for internal automation and supported Microsoft SQL projects.',
+            'Developed and maintained a SaaS platform, contributing to feature implementation, bug fixes, and client-facing solutions. Engaged directly with clients to understand requirements and deliver tailored solutions. Managed server maintenance, SSL certificates, and database operations. Utilized bash and batch scripting for internal automation and supported Microsoft SQL projects.',
+        stack: [
+            {
+                name: 'PHP',
+                image: 'https://cdn.simpleicons.org/php',
+            },
+            {
+                name: 'JavaScript',
+                image: 'https://cdn.simpleicons.org/javascript',
+            },
+            {
+                name: 'jQuery',
+                image: 'https://cdn.simpleicons.org/jquery',
+            },
+            {
+                name: 'Bash',
+                image: 'https://cdn.simpleicons.org/gnubash',
+            },
+            {
+                name: 'PostgreSQL',
+                image: 'https://cdn.simpleicons.org/postgresql',
+            },
+            {
+                name: 'MySQL',
+                image: 'https://cdn.simpleicons.org/mysql',
+            },
+        ],
     },
     {
         role: 'Technical Mentor',
@@ -77,6 +184,7 @@ export const workExperience = [
         logo: wethinkcodeLogo,
         description:
             'Mentored first-year students in technical skills, guiding them through peer-to-peer learning and curriculum delivery. Onboarded new cohorts to Git and in-house LMS systems. Provided constructive feedback on projects and supported student success in a rigorous coding bootcamp environment.',
+        stack: [],
     },
     {
         role: 'Videographer, Photographer',
@@ -87,6 +195,7 @@ export const workExperience = [
         logo: wethinkcodeLogo,
         description:
             'Led the creation and rollout of student ID cards across the Cape Town campus. Collaborated with content teams in Johannesburg and Durban to produce social media content, including video and photography, enhancing institutional visibility and engagement.',
+        stack: [],
     },
     {
         role: 'Technical Support',
@@ -97,6 +206,7 @@ export const workExperience = [
         logo: wethinkcodeLogo,
         description:
             'Provided technical assistance and troubleshooting for internal systems and digital infrastructure, ensuring smooth operations and user support across departments.',
+        stack: [],
     },
 ] as const;
 
@@ -106,6 +216,20 @@ export const education = [
         dateRange: '2021 - 2022',
         logo: wethinkcodeLogo,
         degree: 'Higher National Diploma, Information Technology in Systems Development',
+        stack: [
+            {
+                name: 'Python',
+                image: 'https://cdn.simpleicons.org/python',
+            },
+            {
+                name: 'Java',
+                image: 'https://icon.icepanel.io/Technology/svg/Java.svg',
+            },
+            {
+                name: 'Git',
+                image: 'https://cdn.simpleicons.org/git',
+            },
+        ],
     },
 ] as const;
 
