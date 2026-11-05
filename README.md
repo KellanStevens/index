@@ -68,14 +68,13 @@ Node version in `.nvmrc`.
 
 ### Access
 
-Production is public, so `deploy` has `require-access: false`.
+Production and previews are public, so `deploy` and `preview` both have
+`require-access: false`. CI does not check for an Access login page. Previews
+still get an `X-Robots-Tag: noindex` header (`noindex: true` in `preview.yml`),
+because the build itself allows search engines.
 
-Previews must be behind Cloudflare Access: add a self-hosted application for
-`pr-*.kellanstevens.com` in Zero Trust, allowing your email only. After each
-preview deploy, CI requests the preview without a login and expects the Access
-login page. A public preview is deleted and the job fails. Previews also get an
-`X-Robots-Tag: noindex` header (`noindex: true` in `preview.yml`), because the
-build itself allows search engines.
+If the Zero Trust dashboard still has a self-hosted application for
+`pr-*.kellanstevens.com`, delete it. Otherwise previews stay behind a login.
 
 ### Secrets
 
