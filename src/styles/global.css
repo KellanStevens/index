@@ -265,7 +265,7 @@
   }
 
   .body-lg {
-    @apply text-lg leading-relaxed text-on-surface-variant;
+    @apply text-base md:text-lg leading-relaxed text-on-surface-variant;
   }
 
   .label-md {

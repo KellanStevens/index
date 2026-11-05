@@ -10,12 +10,19 @@ const { profile, about } = Astro.props;
 ---
 
 <section
-    class="mx-auto flex min-h-[80vh] max-w-7xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8"
+    class="mx-auto flex max-w-7xl flex-col justify-center px-4 pt-16 pb-12 sm:px-6 md:min-h-[80vh] md:py-20 lg:px-8"
 >
     <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
         <div class="flex flex-col items-start space-y-8 md:col-span-8">
             <div class="space-y-4">
-                <span class="label-md inline-block">{profile.location}</span>
+                <img
+                    src={profileImg.src}
+                    alt={profile.name}
+                    width={80}
+                    height={80}
+                    class="ring-outline-variant/30 h-20 w-20 rounded-full object-cover shadow-sm ring-1 md:hidden"
+                />
+                <span class="label-md block">{profile.location}</span>
                 <h1 class="display-lg">{profile.name}</h1>
             </div>
 
@@ -23,10 +30,10 @@ const { profile, about } = Astro.props;
                 {profile.title}
             </p>
 
-            <div class="flex flex-wrap gap-4 pt-4">
+            <div class="grid w-full grid-cols-2 gap-3 pt-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-4 sm:pt-4">
                 <a
                     href={`mailto:${profile.email}`}
-                    class="from-primary to-primary-dim text-on-primary label-md rounded-full bg-gradient-to-br px-8 py-4 tracking-[0.1em] transition-opacity hover:opacity-90"
+                    class="from-primary to-primary-dim text-on-primary label-md col-span-2 rounded-full bg-gradient-to-br px-4 py-4 text-center tracking-[0.1em] transition-opacity hover:opacity-90 sm:px-6 lg:px-8"
                 >
                     Contact Me
                 </a>
@@ -34,7 +41,7 @@ const { profile, about } = Astro.props;
                     href={profile.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-8 py-4 tracking-[0.1em] transition-colors"
+                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
                 >
                     LinkedIn
                 </a>
@@ -42,7 +49,7 @@ const { profile, about } = Astro.props;
                     href={profile.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-8 py-4 tracking-[0.1em] transition-colors"
+                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
                 >
                     GitHub
                 </a>
@@ -72,11 +79,11 @@ const { profile, about } = Astro.props;
         </div>
     </div>
 
-    <div class="mt-32 grid grid-cols-1 gap-12 md:grid-cols-12">
-        <div class="md:col-span-4">
+    <div class="mt-16 grid grid-cols-1 gap-4 md:mt-32 lg:grid-cols-12 lg:gap-12">
+        <div class="lg:col-span-4">
             <h2 class="label-md pt-2">About</h2>
         </div>
-        <div class="md:col-span-8">
+        <div class="lg:col-span-8">
             <p class="body-lg text-on-surface-variant leading-relaxed">
                 {about}
             </p>

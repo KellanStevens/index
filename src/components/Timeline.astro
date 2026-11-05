@@ -20,21 +20,22 @@ interface Props {
 const { title, id, items } = Astro.props;
 ---
 
-<section id={id} class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-12">
-        <div class="relative md:col-span-4">
+<section id={id} class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
+        <div class="relative lg:col-span-4">
             <h2 class="label-md sticky top-24 pt-2">{title}</h2>
         </div>
 
-        <div class="space-y-16 md:col-span-8">
+        <div class="space-y-6 lg:col-span-8 lg:space-y-16">
             {
                 items.map((item) => (
-                    <div class="group bg-surface-container-lowest rounded-3xl p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)] flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                        <div class="flex items-center gap-4 md:w-32 md:flex-col md:items-start md:gap-4 shrink-0">
+                    <div class="group bg-surface-container-lowest rounded-2xl p-5 sm:rounded-3xl sm:p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)] flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
+                        <div class="flex items-center gap-4 md:w-36 md:flex-col md:items-start md:gap-4 shrink-0">
                             <img
                                 src={item.logo.src}
                                 alt={`${item.title} logo`}
-                                class="h-14 w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 shadow-sm"
+                                loading="lazy"
+                                class="h-12 w-12 md:h-14 md:w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 shadow-sm"
                                 width={156}
                                 height={156}
                             />
@@ -43,9 +44,9 @@ const { title, id, items } = Astro.props;
                             </span>
                         </div>
 
-                        <div class="flex-1 flex flex-col lg:flex-row gap-6 lg:gap-8">
+                        <div class="flex-1 flex flex-col xl:flex-row gap-6 xl:gap-8">
                             <div class="flex-1">
-                                <h3 class="headline-lg mb-1 text-2xl md:text-3xl">
+                                <h3 class="headline-lg mb-1 text-xl sm:text-2xl md:text-3xl">
                                     {item.title}
                                 </h3>
                                 <div class="body-lg text-primary">
@@ -61,7 +62,7 @@ const { title, id, items } = Astro.props;
                                             </p>
                                         )}
                                         {item.badges && item.badges.length > 0 && (
-                                            <div class="mt-6 flex flex-wrap gap-2">
+                                            <div class="mt-4 flex flex-wrap gap-2 md:mt-6">
                                                 {item.badges.map((badge: string) => (
                                                     <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
                                                         {badge}
@@ -72,7 +73,7 @@ const { title, id, items } = Astro.props;
                                     </div>
                                 )}
                                 {item.stack && item.stack.length > 0 && (
-                                    <div class="mt-6 flex flex-wrap gap-3">
+                                    <div class="mt-4 flex flex-wrap gap-2 md:mt-6 md:gap-3">
                                         {item.stack.map((tech) => (
                                             <div class="bg-surface-container text-on-surface border-outline-variant/30 hover:bg-surface-container-high hover:border-outline-variant/60 flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-xs transition-colors">
                                                 {tech.image && (
@@ -91,12 +92,14 @@ const { title, id, items } = Astro.props;
                             </div>
 
                             {item.image && (
-                                <div class="lg:w-1/2 overflow-hidden rounded-2xl shadow-sm border border-outline-variant/30 shrink-0 lg:self-stretch flex">
+                                <div class="xl:w-1/2 overflow-hidden rounded-2xl shadow-sm border border-outline-variant/30 shrink-0 xl:self-stretch flex">
                                     <img
                                         src={item.image.src}
                                         alt={`${item.title} image`}
                                         width={item.image.width}
                                         height={item.image.height}
+                                        loading="lazy"
+                                        decoding="async"
                                         class="w-full h-full object-cover block"
                                     />
                                 </div>
