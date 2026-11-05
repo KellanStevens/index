@@ -1,4 +1,10 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
-  "unwantedRecommendations": []
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "oxc.oxc-vscode",
+    "bradlc.vscode-tailwindcss",
+    "jnoortheen.nix-ide",
+    "mkhl.direnv"
+  ],
+  "unwantedRecommendations": ["dbaeumer.vscode-eslint"]
 }

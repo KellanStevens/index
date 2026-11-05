@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // A static site: Astro builds to dist/ and Cloudflare serves it as static
+  // assets. There is no Worker script.
+  "name": "index",
+  "account_id": "5bd3372af2fa819bff3b74b8e7f3f860",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "./dist" },
+  "observability": { "enabled": true },
+  // Production runs on the apex only: www.kellanstevens.com has no DNS record.
+  // Wrangler creates the DNS record and certificate for a custom domain on
+  // deploy.
+  "routes": [{ "pattern": "kellanstevens.com", "custom_domain": true }],
+  // Serve only on our own domain, never on workers.dev.
+  "workers_dev": false,
+  "preview_urls": false,
+  "env": {
+    // Pull request previews. The empty routes list keeps previews off the
+    // production domain.
+    "preview": {
+      "routes": [],
+      "workers_dev": false,
+      "preview_urls": false
+    }
+  }
+}
