@@ -55,11 +55,11 @@ const educationItems = education.map((edu) => ({
     title={`${profile.name}`}
     description={about.substring(0, 150) + '...'}
 >
-    <div class="fixed top-8 right-8 z-50">
+    <div class="absolute top-4 right-4 z-50 md:fixed md:top-8 md:right-8">
         <ThemeToggle />
     </div>
 
-    <main class="relative pb-40">
+    <main class="relative pb-16 md:pb-40">
         <Hero profile={profile} about={about} />
 
         <Timeline

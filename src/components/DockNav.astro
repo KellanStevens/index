@@ -1,31 +1,29 @@
 ---
-
+const links = [
+    { href: '#experience', label: 'Experience', shortLabel: 'Work' },
+    { href: '#additional-experience', label: 'Additional', shortLabel: 'Other' },
+    { href: '#education', label: 'Education', shortLabel: 'Education' },
+    { href: '#skills', label: 'Skills', shortLabel: 'Skills' },
+];
 ---
 
-<div class="fixed bottom-8 left-1/2 z-50 -translate-x-1/2">
+<div
+    class="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-2 md:bottom-8"
+>
     <nav
-        class="bg-surface/80 border-outline-variant/20 flex items-center gap-2 rounded-full border p-2 shadow-[0_10px_40px_rgba(45,51,56,0.08)] backdrop-blur-xl"
+        class="bg-surface/80 border-outline-variant/20 pointer-events-auto flex max-w-full items-center gap-1 rounded-full border p-1.5 shadow-[0_10px_40px_rgba(45,51,56,0.08)] backdrop-blur-xl sm:gap-2 sm:p-2"
     >
-        <a
-            href="#experience"
-            class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-6 py-3 transition-all duration-300"
-            >Experience</a
-        >
-        <a
-            href="#additional-experience"
-            class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-6 py-3 transition-all duration-300"
-            >Additional</a
-        >
-        <a
-            href="#education"
-            class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-6 py-3 transition-all duration-300"
-            >Education</a
-        >
-        <a
-            href="#skills"
-            class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-6 py-3 transition-all duration-300"
-            >Skills</a
-        >
+        {
+            links.map((link) => (
+                <a
+                    href={link.href}
+                    class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-2.5 py-3.5 whitespace-nowrap transition-all duration-300 sm:px-6 sm:py-3"
+                >
+                    <span class="sm:hidden">{link.shortLabel}</span>
+                    <span class="hidden sm:inline">{link.label}</span>
+                </a>
+            ))
+        }
     </nav>
 </div>
 
