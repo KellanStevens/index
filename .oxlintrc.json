@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "import"],
+  "jsPlugins": ["@shadcn/lint"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "settings": {
+    "shadcn": {
+      "componentImports": ["^@/components/ui/"],
+      "note": "Colours, fonts and radii live in src/styles/global.css. Use a semantic token (bg-primary, text-muted-foreground) or add one there instead of an arbitrary value."
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "import/no-unassigned-import": ["warn", { "allow": ["**/*.css"] }],
+
+    "shadcn/no-arbitrary-values": "error",
+    "shadcn/no-raw-colors": "error",
+    "shadcn/no-inline-styles": "error",
+    "shadcn/no-unknown-classes": "error",
+    "shadcn/require-static-classes": "error"
+  },
+  "overrides": [
+    {
+      // Vendored shadcn/ui components. Keep them close to upstream so that
+      // `shadcn add` updates stay easy to review.
+      "files": ["src/components/ui/**"],
+      "rules": {
+        "shadcn/no-arbitrary-values": "off",
+        "shadcn/no-raw-colors": "off",
+        "shadcn/no-unknown-classes": "off",
+        "jsx-a11y/prefer-tag-over-role": "off",
+        "jsx-a11y/anchor-has-content": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["dist", ".astro", ".wrangler", "node_modules", "worker-configuration.d.ts"]
+}

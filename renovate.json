@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>KellanStevens/ci//renovate/default",
+    "github>KellanStevens/ci//renovate/astro",
+    "github>KellanStevens/ci//renovate/react"
+  ],
+  "packageRules": [
+    {
+      "description": "The Nix flake supplies nodejs_22, so stay on Node 22 until the flake and .nvmrc change together",
+      "matchManagers": ["nvm"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}

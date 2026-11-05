@@ -3,6 +3,7 @@
     "include": [".astro/types.d.ts", "**/*"],
     "exclude": ["dist"],
     "compilerOptions": {
+        "types": ["bun"],
         "jsx": "react-jsx",
         "jsxImportSource": "react",
         "paths": {

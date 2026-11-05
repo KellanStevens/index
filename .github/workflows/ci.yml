@@ -1,0 +1,47 @@
+name: CI
+
+# The jobs come from KellanStevens/ci. See README.md, "CI/CD".
+on:
+  pull_request:
+    # ready_for_review starts a preview when a draft becomes ready.
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A new commit on a pull request cancels the older run. Marking a draft as
+# ready does not change the code, so it waits for the running checks to
+# finish instead of cancelling them.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' && github.event.action != 'ready_for_review' }}
+
+jobs:
+  check:
+    uses: KellanStevens/ci/.github/workflows/check.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    with:
+      scripts: lint typecheck test build
+
+  # Each ignore is an advisory that has no fix. Remove it when the fix ships.
+  # - GHSA-gcqx-w48m-w2h4: deepmerge 4.3.1 (low). No patched version exists.
+  #   Only the shadcn CLI uses it, and the site does not.
+  audit:
+    uses: KellanStevens/ci/.github/workflows/audit.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    with:
+      ignore: GHSA-gcqx-w48m-w2h4
+
+  # The template repository itself never deploys. A repository made from it
+  # is not a template, so this runs there.
+  deploy:
+    needs: check
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !github.event.repository.is_template }}
+    uses: KellanStevens/ci/.github/workflows/deploy.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    with:
+      url: https://kellanstevens.com
+      # The site is public. Previews stay behind Access. See README.md, "Access".
+      require-access: false
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
