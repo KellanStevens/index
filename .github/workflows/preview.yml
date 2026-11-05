@@ -28,7 +28,8 @@ jobs:
       # One level below the zone, so the Universal SSL certificate
       # covers it at once.
       host: pr-{pr}.kellanstevens.com
-      require-access: true
+      # Previews are public, like production. See README.md, "Access".
+      require-access: false
       # The build allows search engines, because production is public.
       noindex: true
       # Preview only a pull request that changes the site or its build. One

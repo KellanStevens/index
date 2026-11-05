@@ -41,7 +41,7 @@ jobs:
     uses: KellanStevens/ci/.github/workflows/deploy.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
     with:
       url: https://kellanstevens.com
-      # The site is public. Previews stay behind Access. See README.md, "Access".
+      # The site is public, and so are previews. See README.md, "Access".
       require-access: false
     secrets:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
