@@ -7,7 +7,7 @@
   ],
   "packageRules": [
     {
-      "description": "The Nix flake supplies nodejs_22, so stay on Node 22 until the flake and .nvmrc change together",
+      "description": "The Nix flake supplies nodejs_26, so stay on Node 26 until the flake and .nvmrc change together",
       "matchManagers": ["nvm"],
       "matchUpdateTypes": ["major"],
       "enabled": false
