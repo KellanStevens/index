@@ -1,9 +1,7 @@
-<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M33 163.793V8H80.5V107.518M33 163.793V249H80.5V179.927L104.066 151.692M33 163.793L80.5 107.518M80.5 107.518L164.5 8H224L136.048 113.374M104.066 151.692L164.5 249L192 249L224 249L136.048 113.374M104.066 151.692L136.048 113.374" stroke="url(#paint0_linear_1_14)" stroke-width="5"/>
-<defs>
-<linearGradient id="paint0_linear_1_14" x1="128.5" y1="8" x2="128.5" y2="249" gradientUnits="userSpaceOnUse">
-<stop stop-color="#4000FF"/>
-<stop offset="1" stop-color="#EE2EEA"/>
-</linearGradient>
-</defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+<style>
+path { fill: #000; }
+@media (prefers-color-scheme: dark) { path { fill: #fff; } }
+</style>
+<path transform="translate(31 838.5) scale(1 -1)" d="M106 729V44C106 17 61 15 36 12V0H296V12H293C267 12 207 19 207 44V247C207 389 393 596 519 661C558 681 596 687 609 687C629 687 621 671 600 656C349 480 293 424 354 342L565 55C570 47 573 40 573 35C573 19 549 16 524 13V0H802V13C776 16 718 21 695 50L467 361C453 382 447 403 447 423C447 501 539 568 600 615C680 678 745 709 745 741C745 758 726 777 679 777C549 777 268 530 207 316V729C207 756 253 761 277 761H286V773H36V761C61 758 106 756 106 729Z"/>
 </svg>
