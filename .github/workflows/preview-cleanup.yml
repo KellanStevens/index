@@ -26,7 +26,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: KellanStevens/ci/.github/workflows/preview-cleanup.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    uses: KellanStevens/ci/.github/workflows/preview-cleanup.yml@9ab1b4c0de370f2b42b106122b2a0f969f9e734c # v1.1.0
     with:
       pr-number: ${{ github.event.pull_request.number || inputs.pr_number }}
       name: index
