@@ -1,0 +1,49 @@
+name: Preview
+
+# Deploy each pull request to its own Worker, "index-pr-<number>", on
+# https://pr-<number>.kellanstevens.com, after CI passes. See README.md,
+# "CI/CD".
+#
+# GitHub runs this workflow only when the file is on main.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    # The template repository itself never deploys.
+    if: ${{ !github.event.repository.is_template }}
+    uses: KellanStevens/ci/.github/workflows/preview.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    # The called workflow cannot have more than these.
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+    with:
+      name: index
+      # One level below the zone, so the Universal SSL certificate
+      # covers it at once.
+      host: pr-{pr}.kellanstevens.com
+      require-access: true
+      # The build allows search engines, because production is public.
+      noindex: true
+      # Preview only a pull request that changes the site or its build. One
+      # that edits only the README, AGENTS.md or the workflows gets no preview.
+      # wrangler.jsonc is not listed: a preview uses the config of main.
+      paths: |
+        src
+        public
+        astro.config.mjs
+        components.json
+        tsconfig.json
+        package.json
+        bun.lock
+        bunfig.toml
+        .bun-version
+        .nvmrc
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

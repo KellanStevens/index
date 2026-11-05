@@ -1,0 +1,35 @@
+name: Preview cleanup
+
+# Delete the preview Worker and its custom domain when a pull request closes
+# (merged or not), and mark the preview comment as deleted.
+#
+# To delete a preview that stayed after its pull request closed, run this
+# workflow by hand from the Actions tab and enter the pull request number.
+on:
+  pull_request_target:
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: Pull request number of the preview to delete
+        required: true
+        type: number
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    # The template repository itself never deploys.
+    if: ${{ !github.event.repository.is_template }}
+    # The called workflow cannot have more than these.
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: KellanStevens/ci/.github/workflows/preview-cleanup.yml@f84bc44c5399ec004fd5dffed4fa86e0d34616c8 # v1.0.0
+    with:
+      pr-number: ${{ github.event.pull_request.number || inputs.pr_number }}
+      name: index
+      host: pr-{pr}.kellanstevens.com
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
