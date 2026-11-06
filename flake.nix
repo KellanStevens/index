@@ -20,7 +20,7 @@
           packages = [
             pkgs.bun
             # wrangler and parts of the Astro toolchain still expect a Node runtime
-            pkgs.nodejs_22
+            pkgs.nodejs_26
             # Used to open pull requests (`gh pr create`), as AGENTS.md describes.
             pkgs.gh
           ];
