@@ -1,26 +1,38 @@
 ---
 interface Props {
     skills: readonly string[];
+    /** Section number, shown before the title. */
+    index: string;
 }
 
-const { skills } = Astro.props;
+const { skills, index } = Astro.props;
 ---
 
-<section id="skills" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
-        <div class="lg:col-span-4">
-            <h2 class="label-md pt-2">Technical Stack</h2>
+<section id="skills" class="bp-mark border-outline-variant scroll-mt-16 border-t">
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+        <div
+            class="border-outline-variant border-b p-4 sm:p-6 lg:col-span-3 lg:border-r lg:border-b-0"
+        >
+            <h2 class="label-md">
+                <span class="text-primary">{index}</span> / Technical Stack
+            </h2>
         </div>
-        <div class="lg:col-span-8">
-            <div class="flex flex-wrap gap-2 md:gap-3">
+        <!-- The grid is one pixel wider and taller than its frame, which hides the outer cell borders. -->
+        <div class="overflow-hidden lg:col-span-9">
+            <ul class="-mr-px -mb-px grid grid-cols-2 sm:grid-cols-3">
                 {
-                    skills.map((skill) => (
-                        <div class="bg-surface-container-lowest body-lg text-on-surface hover:bg-surface-container-high border-outline-variant/10 cursor-default rounded-full border px-4 py-2 shadow-sm md:px-6 md:py-3 transition-all duration-300 hover:scale-105">
-                            {skill}
-                        </div>
+                    skills.map((skill, i) => (
+                        <li class="border-outline-variant hover:bg-surface-container-low/70 flex flex-col gap-6 border-r border-b p-4 transition-colors sm:p-6">
+                            <span class="label-sm text-primary">
+                                {String(i + 1).padStart(2, '0')}
+                            </span>
+                            <span class="text-lg font-semibold tracking-tight sm:text-xl">
+                                {skill}
+                            </span>
+                        </li>
                     ))
                 }
-            </div>
+            </ul>
         </div>
     </div>
 </section>

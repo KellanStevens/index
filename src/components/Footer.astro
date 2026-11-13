@@ -7,15 +7,31 @@ const lastName = lastNameParts.join(' ');
 
 const firstLetters = firstName.split('');
 const lastLetters = lastName ? (' ' + lastName).split('') : [];
+
+// The title block of the drawing: one cell for each field.
+const titleBlock = [
+    { label: 'Drawn by', value: profile.name },
+    { label: 'Location', value: profile.location },
+    {
+        label: 'Contact',
+        value: profile.email,
+        href: `mailto:${profile.email}`,
+    },
+    { label: 'LinkedIn', value: 'kellan-stevens', href: profile.linkedinUrl },
+    { label: 'GitHub', value: 'kellanstevens', href: profile.githubUrl },
+    { label: 'Sheet', value: '01 / 01' },
+    { label: 'Scale', value: '1 : 1' },
+    { label: 'Rev', value: String(new Date().getFullYear()) },
+];
 ---
 
-<footer
-    class="bg-surface-container-lowest border-outline-variant/10 mt-16 flex w-full items-center justify-center overflow-hidden border-t pt-16 pb-28 md:mt-32 md:pt-24 md:pb-48"
->
-    <div class="flex w-full justify-center px-[12px] text-center">
+<footer class="bp-mark border-outline-variant border-t pb-24 md:pb-32">
+    <div
+        class="@container flex w-full justify-center overflow-hidden px-3 py-12 text-center md:py-20"
+    >
         <h2
             id="footer-name"
-            class="font-kaftan text-[20vw] sm:text-[21vw] md:text-[11vw] lg:text-[11.5vw] xl:text-[12vw] text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
+            class="font-kaftan text-[20cqw] sm:text-[21cqw] md:text-[11.5cqw] text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
         >
             <span class="flex">
                 {
@@ -34,7 +50,7 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
                 {
                     lastLetters.map((letter) =>
                         letter === ' ' ? (
-                            <span class="w-[3vw]">&nbsp;</span>
+                            <span class="w-[3cqw]">&nbsp;</span>
                         ) : (
                             <span class="relative inline-flex items-center justify-center">
                                 <span class="invisible">{letter}</span>
@@ -47,6 +63,31 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
                 }
             </span>
         </h2>
+    </div>
+
+    <!-- The grid is one pixel wider than its frame, which hides the border of the last column. -->
+    <div class="border-outline-variant overflow-hidden border-t">
+        <dl class="-mr-px grid grid-cols-2 md:grid-cols-4">
+            {
+                titleBlock.map((field) => (
+                    <div class="border-outline-variant flex min-w-0 flex-col gap-2 border-r border-b p-4">
+                        <dt class="label-sm">{field.label}</dt>
+                        <dd class="text-on-surface truncate font-mono text-sm">
+                            {field.href ? (
+                                <a
+                                    href={field.href}
+                                    class="hover:text-primary underline underline-offset-4"
+                                >
+                                    {field.value}
+                                </a>
+                            ) : (
+                                field.value
+                            )}
+                        </dd>
+                    </div>
+                ))
+            }
+        </dl>
     </div>
 </footer>
 

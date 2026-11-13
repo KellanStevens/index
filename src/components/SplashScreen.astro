@@ -7,12 +7,11 @@ const letters = name.split('');
 
 <div
     id="splash-screen"
-    class="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden bg-black text-black dark:bg-white"
-    style="clip-path: url(#splash-wave-clip);"
+    class="bp-grid fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
 >
     <div class="overflow-hidden p-4">
         <h1
-            class="splash-text flex font-kaftan text-7xl tracking-tight text-white sm:text-9xl lg:text-[17rem] dark:text-black"
+            class="splash-text flex font-kaftan text-7xl tracking-tight sm:text-9xl lg:text-[17rem]"
         >
             {
                 letters.map((letter) => (

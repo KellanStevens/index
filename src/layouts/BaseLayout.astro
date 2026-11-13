@@ -23,7 +23,7 @@ const { title, description = 'Resume' } = Astro.props;
         <title>{title}</title>
         <script is:inline set:html={themeInit} />
     </head>
-    <body class="bg-background min-h-screen font-sans antialiased">
+    <body class="bg-background bp-grid min-h-screen font-sans antialiased">
         <SplashScreen />
         <slot />
     </body>

@@ -14,73 +14,79 @@ interface TimelineItemProps {
 interface Props {
     title: string;
     id: string;
+    /** Section number, shown before the title and in each item reference. */
+    index: string;
     items: TimelineItemProps[];
 }
 
-const { title, id, items } = Astro.props;
+const { title, id, index, items } = Astro.props;
 ---
 
-<section id={id} class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
-        <div class="relative lg:col-span-4">
-            <h2 class="label-md sticky top-24 pt-2">{title}</h2>
+<section id={id} class="bp-mark border-outline-variant scroll-mt-16 border-t">
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+        <div
+            class="border-outline-variant border-b p-4 sm:p-6 lg:col-span-3 lg:border-r lg:border-b-0"
+        >
+            <h2 class="label-md lg:sticky lg:top-20">
+                <span class="text-primary">{index}</span> / {title}
+            </h2>
         </div>
 
-        <div class="space-y-6 lg:col-span-8 lg:space-y-16">
+        <div class="lg:col-span-9">
             {
-                items.map((item) => (
-                    <div class="group bg-surface-container-lowest rounded-2xl p-5 sm:rounded-3xl sm:p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)] flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                        <div class="flex items-center gap-4 md:w-36 md:flex-col md:items-start md:gap-4 shrink-0">
+                items.map((item, i) => (
+                    <article class="border-outline-variant hover:bg-surface-container-low/70 flex flex-col gap-4 border-t p-4 transition-colors first:border-t-0 sm:p-6 md:flex-row md:gap-8">
+                        <div class="flex shrink-0 items-center gap-4 md:w-40 md:flex-col md:items-start">
                             <img
                                 src={item.logo.src}
                                 alt={`${item.title} logo`}
                                 loading="lazy"
-                                class="h-12 w-12 md:h-14 md:w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 shadow-sm"
+                                class="border-outline-variant h-12 w-12 shrink-0 border bg-white object-cover"
                                 width={156}
                                 height={156}
                             />
-                            <span class="label-sm text-on-surface-variant whitespace-nowrap pt-1">
-                                {item.dateRange}
-                            </span>
+                            <div class="flex flex-col gap-1">
+                                <span class="label-sm text-primary">
+                                    {index}.{i + 1}
+                                </span>
+                                <span class="label-sm whitespace-nowrap">
+                                    {item.dateRange}
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="flex-1 flex flex-col xl:flex-row gap-6 xl:gap-8">
-                            <div class="flex-1">
-                                <h3 class="headline-lg mb-1 text-xl sm:text-2xl md:text-3xl">
+                        <div class="flex min-w-0 flex-1 flex-col gap-6 xl:flex-row xl:gap-8">
+                            <div class="min-w-0 flex-1">
+                                <h3 class="text-xl font-semibold tracking-tight sm:text-2xl">
                                     {item.title}
                                 </h3>
-                                <div class="body-lg text-primary">
+                                <div class="text-primary mt-1 font-mono text-sm">
                                     {item.subtitle}
                                 </div>
 
-                                {(item.description ||
-                                    (item.badges && item.badges.length > 0)) && (
-                                    <div class="mt-4">
-                                        {item.description && (
-                                            <p class="body-lg text-on-surface-variant leading-relaxed">
-                                                {item.description}
-                                            </p>
-                                        )}
-                                        {item.badges && item.badges.length > 0 && (
-                                            <div class="mt-4 flex flex-wrap gap-2 md:mt-6">
-                                                {item.badges.map((badge: string) => (
-                                                    <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
-                                                        {badge}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
+                                {item.description && (
+                                    <p class="body-lg mt-4">
+                                        {item.description}
+                                    </p>
+                                )}
+                                {item.badges && item.badges.length > 0 && (
+                                    <div class="mt-4 flex flex-wrap gap-2">
+                                        {item.badges.map((badge: string) => (
+                                            <span class="label-sm border-outline-variant border border-dashed px-2.5 py-1">
+                                                {badge}
+                                            </span>
+                                        ))}
                                     </div>
                                 )}
                                 {item.stack && item.stack.length > 0 && (
-                                    <div class="mt-4 flex flex-wrap gap-2 md:mt-6 md:gap-3">
+                                    <div class="mt-4 flex flex-wrap gap-2">
                                         {item.stack.map((tech) => (
-                                            <div class="bg-surface-container text-on-surface border-outline-variant/30 hover:bg-surface-container-high hover:border-outline-variant/60 flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-xs transition-colors">
+                                            <div class="border-outline-variant text-on-surface flex items-center gap-2 border px-2.5 py-1 font-mono text-xs">
                                                 {tech.image && (
                                                     <img
                                                         src={tech.image}
-                                                        alt={tech.name}
-                                                        class="h-4 w-4 object-contain opacity-80"
+                                                        alt=""
+                                                        class="bp-icon h-3.5 w-3.5 object-contain"
                                                         loading="lazy"
                                                     />
                                                 )}
@@ -92,7 +98,7 @@ const { title, id, items } = Astro.props;
                             </div>
 
                             {item.image && (
-                                <div class="xl:w-1/2 overflow-hidden rounded-2xl shadow-sm border border-outline-variant/30 shrink-0 xl:self-stretch flex">
+                                <div class="border-outline-variant flex shrink-0 overflow-hidden border xl:w-1/2 xl:self-stretch">
                                     <img
                                         src={item.image.src}
                                         alt={`${item.title} image`}
@@ -100,12 +106,12 @@ const { title, id, items } = Astro.props;
                                         height={item.image.height}
                                         loading="lazy"
                                         decoding="async"
-                                        class="w-full h-full object-cover block"
+                                        class="block h-full w-full object-cover"
                                     />
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </article>
                 ))
             }
         </div>
