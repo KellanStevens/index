@@ -29,6 +29,12 @@ const experienceItems = fullTimeExperience.map((job) => ({
     badges: [job.location],
     logo: job.logo,
     stack: job.stack,
+    specs: [
+        { label: 'Company', value: job.company },
+        { label: 'Type', value: job.employmentType },
+        { label: 'Location', value: job.location },
+        { label: 'Period', value: job.dateRange },
+    ],
 }));
 
 const volunteerContractItems = volunteerContractExperience.map((job) => ({
@@ -39,6 +45,12 @@ const volunteerContractItems = volunteerContractExperience.map((job) => ({
     badges: [job.location],
     logo: job.logo,
     stack: job.stack,
+    specs: [
+        { label: 'Company', value: job.company },
+        { label: 'Type', value: job.employmentType },
+        { label: 'Location', value: job.location },
+        { label: 'Period', value: job.dateRange },
+    ],
 }));
 
 const educationItems = education.map((edu) => ({
@@ -48,6 +60,10 @@ const educationItems = education.map((edu) => ({
     logo: edu.logo,
     stack: edu.stack,
     image: edu.image,
+    specs: [
+        { label: 'School', value: edu.school },
+        { label: 'Period', value: edu.dateRange },
+    ],
 }));
 ---
 

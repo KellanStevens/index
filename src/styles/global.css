@@ -367,6 +367,90 @@
     filter: brightness(0) invert(1);
   }
 
+  /*
+   * Timeline blocks open a detail sheet. On a device with a pointer, a line
+   * draws across the top of the block for one second, then the sheet opens
+   * (HOVER_MS in scripts/ui/detail-sheet.ts).
+   */
+  @media (hover: hover) {
+    .bp-detail-trigger::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      pointer-events: none;
+    }
+
+    .bp-detail-trigger:hover::after {
+      transform: scaleX(1);
+      transition: transform 1s linear;
+    }
+  }
+
+  /* The detail sheet: a modal <dialog> that pops up over a blurred page */
+  .bp-dialog {
+    margin: auto;
+    width: min(100% - 1.5rem, 52rem);
+    max-height: min(100dvh - 3rem, 46rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    opacity: 0;
+    transform: translateY(1rem) scale(0.96);
+    transition:
+      opacity 0.2s ease-out,
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      overlay 0.25s allow-discrete,
+      display 0.25s allow-discrete;
+  }
+
+  .bp-dialog[open] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .bp-dialog[open] {
+      opacity: 0;
+      transform: translateY(1rem) scale(0.96);
+    }
+  }
+
+  .bp-dialog::backdrop {
+    opacity: 0;
+    transition:
+      opacity 0.25s ease-out,
+      overlay 0.25s allow-discrete,
+      display 0.25s allow-discrete;
+  }
+
+  .bp-dialog[open]::backdrop {
+    opacity: 1;
+  }
+
+  @starting-style {
+    .bp-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-dialog,
+    .bp-dialog::backdrop,
+    .bp-detail-trigger:hover::after {
+      transition: none;
+    }
+  }
+
+  /* The page behind an open sheet does not scroll */
+  html:has(.bp-dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Dock links. The scroll observer in DockNav sets aria-current. */
   .dock-link:hover:not([aria-current]) {
     @apply bg-surface-container-high text-on-surface;
