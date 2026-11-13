@@ -1,5 +1,5 @@
-// The display fonts that a letter of the name can change to: on hover
-// (font-hover.ts) and in the shuffle of the splash screen (splash-screen.ts).
+// The display fonts that a letter of the name can change to: on hover in
+// the footer (font-hover.ts) and in the shuffle of the splash screen (splash-screen.ts).
 export const displayFonts = [
     'Impact, sans-serif',
     'Bradley Hand, cursive',

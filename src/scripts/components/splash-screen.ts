@@ -12,7 +12,7 @@ const SETTLE_STEP_MS = 180;
 const REMOVE_MS = 4300;
 
 function shuffleFonts(splash: HTMLElement) {
-    const letters = [...splash.querySelectorAll<HTMLElement>('.hover-letter')];
+    const letters = [...splash.querySelectorAll<HTMLElement>('.splash-letter')];
     const lastFont = letters.map(() => -1);
     const settled = letters.map(() => false);
     // The first letter settles one step after the last letter has started.

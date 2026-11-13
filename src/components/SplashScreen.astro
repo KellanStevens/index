@@ -17,7 +17,7 @@ const letters = name.split('');
                 letters.map((letter) => (
                     <span class="relative inline-flex items-center justify-center">
                         <span class="invisible">{letter}</span>
-                        <span class="hover-letter absolute inset-0 flex cursor-default items-center justify-center transition-all duration-75">
+                        <span class="splash-letter absolute inset-0 flex items-center justify-center">
                             {letter}
                         </span>
                     </span>
@@ -27,5 +27,4 @@ const letters = name.split('');
     </div>
 </div>
 
-<script src="@/scripts/ui/font-hover.ts"></script>
 <script src="@/scripts/components/splash-screen.ts"></script>
