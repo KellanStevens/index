@@ -1,4 +1,8 @@
 #splash-screen {
+    --grid-minor: color-mix(in srgb, var(--blueprint-ink) 7%, transparent);
+    --grid-major: color-mix(in srgb, var(--blueprint-ink) 14%, transparent);
+    background-color: var(--blueprint);
+    color: var(--blueprint-ink);
     animation: slideUpOut 0.8s cubic-bezier(0.76, 0, 0.24, 1) 2.8s forwards;
 }
 

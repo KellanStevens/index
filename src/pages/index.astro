@@ -29,6 +29,12 @@ const experienceItems = fullTimeExperience.map((job) => ({
     badges: [job.location],
     logo: job.logo,
     stack: job.stack,
+    specs: [
+        { label: 'Company', value: job.company },
+        { label: 'Type', value: job.employmentType },
+        { label: 'Location', value: job.location },
+        { label: 'Period', value: job.dateRange },
+    ],
 }));
 
 const volunteerContractItems = volunteerContractExperience.map((job) => ({
@@ -39,6 +45,12 @@ const volunteerContractItems = volunteerContractExperience.map((job) => ({
     badges: [job.location],
     logo: job.logo,
     stack: job.stack,
+    specs: [
+        { label: 'Company', value: job.company },
+        { label: 'Type', value: job.employmentType },
+        { label: 'Location', value: job.location },
+        { label: 'Period', value: job.dateRange },
+    ],
 }));
 
 const educationItems = education.map((edu) => ({
@@ -48,6 +60,10 @@ const educationItems = education.map((edu) => ({
     logo: edu.logo,
     stack: edu.stack,
     image: edu.image,
+    specs: [
+        { label: 'School', value: edu.school },
+        { label: 'Period', value: edu.dateRange },
+    ],
 }));
 ---
 
@@ -55,31 +71,50 @@ const educationItems = education.map((edu) => ({
     title={`${profile.name}`}
     description={about.substring(0, 150) + '...'}
 >
-    <div class="absolute top-4 right-4 z-50 md:fixed md:top-8 md:right-8">
-        <ThemeToggle />
+    <div class="mx-auto max-w-300 px-3 sm:px-6">
+        <div class="border-outline-variant border-x">
+            <header
+                class="bg-surface/85 border-outline-variant sticky top-0 z-40 flex items-center justify-between gap-4 border-b px-4 py-3 backdrop-blur-sm sm:px-6"
+            >
+                <span class="label-sm">
+                    <span class="text-primary">{profile.initials}</span> / Portfolio
+                </span>
+                <span class="label-sm hidden sm:block">
+                    {profile.location}
+                </span>
+                <ThemeToggle />
+            </header>
+
+            <main>
+                <Hero profile={profile} about={about} />
+
+                <Timeline
+                    id="experience"
+                    index="02"
+                    title="Work Experience"
+                    items={experienceItems}
+                />
+
+                <Timeline
+                    id="additional-experience"
+                    index="03"
+                    title="Additional Experience"
+                    items={volunteerContractItems}
+                />
+
+                <Timeline
+                    id="education"
+                    index="04"
+                    title="Education"
+                    items={educationItems}
+                />
+
+                <SkillBadges index="05" skills={skills} />
+            </main>
+
+            <Footer />
+        </div>
     </div>
 
-    <main class="relative pb-16 md:pb-40">
-        <Hero profile={profile} about={about} />
-
-        <Timeline
-            id="experience"
-            title="Work Experience"
-            items={experienceItems}
-        />
-
-        <Timeline
-            id="additional-experience"
-            title="Additional Experience"
-            items={volunteerContractItems}
-        />
-
-        <Timeline id="education" title="Education" items={educationItems} />
-
-        <SkillBadges skills={skills} />
-
-        <DockNav />
-    </main>
-
-    <Footer />
+    <DockNav />
 </BaseLayout>

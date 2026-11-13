@@ -7,15 +7,57 @@ const lastName = lastNameParts.join(' ');
 
 const firstLetters = firstName.split('');
 const lastLetters = lastName ? (' ' + lastName).split('') : [];
+
+// The page is static, so the time of the build is the time of the last deploy.
+const builtAt = new Date();
+const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: profile.timeZone,
+}).format(builtAt);
+
+const city = profile.location.split(',')[0];
+
+// The title block of the drawing: one cell for each field. The grid has two
+// columns, or three from md, so six fields fill it.
+const titleBlock: {
+    label: string;
+    value: string;
+    href?: string;
+    /** A clock in profile.timeZone, kept current by the script below. */
+    clock?: boolean;
+    /** Machine-readable date, for a <time> element. */
+    datetime?: string;
+}[] = [
+    { label: `Time in ${city}`, value: '--:--:--', clock: true },
+    {
+        label: 'Contact',
+        value: profile.email,
+        href: `mailto:${profile.email}`,
+    },
+    { label: 'LinkedIn', value: 'kellan-stevens', href: profile.linkedinUrl },
+    { label: 'GitHub', value: 'kellanstevens', href: profile.githubUrl },
+    {
+        label: 'Last updated',
+        value: builtAtLabel,
+        datetime: builtAt.toISOString(),
+    },
+    {
+        label: 'Source',
+        value: profile.sourceUrl.replace('https://github.com/', ''),
+        href: profile.sourceUrl,
+    },
+];
 ---
 
-<footer
-    class="bg-surface-container-lowest border-outline-variant/10 mt-16 flex w-full items-center justify-center overflow-hidden border-t pt-16 pb-28 md:mt-32 md:pt-24 md:pb-48"
->
-    <div class="flex w-full justify-center px-[12px] text-center">
+<footer class="bp-mark border-outline-variant border-t pb-24 md:pb-32">
+    <div
+        class="@container flex w-full justify-center overflow-hidden px-3 py-12 text-center md:py-20"
+    >
         <h2
             id="footer-name"
-            class="font-kaftan text-[20vw] sm:text-[21vw] md:text-[11vw] lg:text-[11.5vw] xl:text-[12vw] text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
+            class="font-kaftan text-[20cqw] sm:text-[21cqw] md:text-[11.5cqw] text-on-surface flex justify-center overflow-hidden leading-none tracking-tight whitespace-nowrap select-none"
         >
             <span class="flex">
                 {
@@ -34,7 +76,7 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
                 {
                     lastLetters.map((letter) =>
                         letter === ' ' ? (
-                            <span class="w-[3vw]">&nbsp;</span>
+                            <span class="w-[3cqw]">&nbsp;</span>
                         ) : (
                             <span class="relative inline-flex items-center justify-center">
                                 <span class="invisible">{letter}</span>
@@ -48,6 +90,43 @@ const lastLetters = lastName ? (' ' + lastName).split('') : [];
             </span>
         </h2>
     </div>
+
+    <!-- The grid is one pixel wider than its frame, which hides the border of the last column. -->
+    <div class="border-outline-variant overflow-hidden border-t">
+        <dl class="-mr-px grid grid-cols-2 md:grid-cols-3">
+            {
+                titleBlock.map((field) => (
+                    <div class="border-outline-variant flex min-w-0 flex-col gap-2 border-r border-b p-4">
+                        <dt class="label-sm">{field.label}</dt>
+                        <dd class="text-on-surface truncate font-mono text-sm">
+                            {field.href ? (
+                                <a
+                                    href={field.href}
+                                    class="hover:text-primary underline underline-offset-4"
+                                >
+                                    {field.value}
+                                </a>
+                            ) : field.clock ? (
+                                <span
+                                    data-clock={profile.timeZone}
+                                    class="tabular-nums"
+                                >
+                                    {field.value}
+                                </span>
+                            ) : field.datetime ? (
+                                <time datetime={field.datetime}>
+                                    {field.value}
+                                </time>
+                            ) : (
+                                field.value
+                            )}
+                        </dd>
+                    </div>
+                ))
+            }
+        </dl>
+    </div>
 </footer>
 
 <script src="@/scripts/ui/font-hover.ts"></script>
+<script src="@/scripts/ui/clock.ts"></script>

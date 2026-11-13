@@ -7,84 +7,84 @@ interface Props {
 }
 
 const { profile, about } = Astro.props;
+
+const linkClass =
+    'border-outline text-on-surface hover:bg-surface-container-high label-md border px-4 py-4 text-center transition-colors sm:px-6 lg:px-8';
 ---
 
-<section
-    class="mx-auto flex max-w-7xl flex-col justify-center px-4 pt-16 pb-12 sm:px-6 md:min-h-[80vh] md:py-20 lg:px-8"
->
-    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
-        <div class="flex flex-col items-start space-y-8 md:col-span-8">
-            <div class="space-y-4">
-                <img
-                    src={profileImg.src}
-                    alt={profile.name}
-                    width={80}
-                    height={80}
-                    class="ring-outline-variant/30 h-20 w-20 rounded-full object-cover shadow-sm ring-1 md:hidden"
-                />
-                <span class="label-md block">{profile.location}</span>
-                <h1 class="display-lg">{profile.name}</h1>
-            </div>
-
-            <p class="body-lg text-on-surface-variant max-w-2xl">
-                {profile.title}
-            </p>
-
-            <div class="grid w-full grid-cols-2 gap-3 pt-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-4 sm:pt-4">
-                <a
-                    href={`mailto:${profile.email}`}
-                    class="from-primary to-primary-dim text-on-primary label-md col-span-2 rounded-full bg-gradient-to-br px-4 py-4 text-center tracking-[0.1em] transition-opacity hover:opacity-90 sm:px-6 lg:px-8"
-                >
-                    Contact Me
-                </a>
-                <a
-                    href={profile.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
-                >
-                    LinkedIn
-                </a>
-                <a
-                    href={profile.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
-                >
-                    GitHub
-                </a>
-            </div>
+<section class="grid grid-cols-1 md:grid-cols-12">
+    <div
+        class="flex flex-col items-start justify-center gap-8 px-4 py-12 sm:px-6 md:col-span-8 md:p-12 lg:py-24"
+    >
+        <div class="space-y-4">
+            <img
+                src={profileImg.src}
+                alt={profile.name}
+                width={80}
+                height={80}
+                class="border-outline h-20 w-20 border object-cover md:hidden"
+            />
+            <span class="label-md block">{profile.location}</span>
+            <h1 class="display-lg">{profile.name}</h1>
         </div>
 
-        <div class="hidden justify-center md:col-span-4 md:flex">
-            <div
-                class="bg-surface-container-low group relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_10px_40px_rgba(45,51,56,0.04)]"
+        <p class="body-lg max-w-2xl">
+            {profile.title}
+        </p>
+
+        <div class="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:flex-wrap">
+            <a
+                href={`mailto:${profile.email}`}
+                class="bg-primary text-on-primary border-primary hover:bg-primary-dim hover:border-primary-dim label-md col-span-2 border px-4 py-4 text-center transition-colors sm:px-6 lg:px-8"
             >
-                <img
-                    src={profileImg.src}
-                    alt={profile.name}
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div
-                    class="from-surface-container-lowest/80 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
-                >
-                </div>
-                <div class="absolute right-6 bottom-6 left-6">
-                    <span
-                        class="label-sm text-on-surface bg-surface-container-lowest/80 inline-block rounded-full px-4 py-2 shadow-sm backdrop-blur-md"
-                        >EST. 2002</span
-                    >
-                </div>
-            </div>
+                Contact Me
+            </a>
+            <a
+                href={profile.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={linkClass}
+            >
+                LinkedIn
+            </a>
+            <a
+                href={profile.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={linkClass}
+            >
+                GitHub
+            </a>
         </div>
     </div>
 
-    <div class="mt-16 grid grid-cols-1 gap-4 md:mt-32 lg:grid-cols-12 lg:gap-12">
-        <div class="lg:col-span-4">
-            <h2 class="label-md pt-2">About</h2>
+    <div
+        class="border-outline-variant hidden flex-col md:col-span-4 md:flex md:border-l"
+    >
+        <div class="bg-surface-container-low relative aspect-3/4 w-full overflow-hidden">
+            <img
+                src={profileImg.src}
+                alt={profile.name}
+                class="absolute inset-0 h-full w-full object-cover"
+            />
         </div>
-        <div class="lg:col-span-8">
-            <p class="body-lg text-on-surface-variant leading-relaxed">
+        <div class="border-outline-variant flex flex-1 items-center border-t px-4 py-3">
+            <div class="bp-dim label-sm w-full">Est. 2002</div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="bp-mark border-outline-variant border-t">
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+        <div
+            class="border-outline-variant border-b p-4 sm:p-6 lg:col-span-3 lg:border-r lg:border-b-0"
+        >
+            <h2 class="label-md">
+                <span class="text-primary">01</span> / About
+            </h2>
+        </div>
+        <div class="p-4 sm:p-6 lg:col-span-9 lg:p-12">
+            <p class="body-lg">
                 {about}
             </p>
         </div>

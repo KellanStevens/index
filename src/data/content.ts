@@ -5,6 +5,10 @@ export const profile = {
     email: 'website@kellanstevens.com',
     linkedinUrl: 'https://linkedin.com/in/kellan-stevens',
     githubUrl: 'https://github.com/kellanstevens',
+    // IANA time zone of `location`, for the clock in the footer.
+    timeZone: 'Africa/Johannesburg',
+    // The repository of this site.
+    sourceUrl: 'https://github.com/KellanStevens/index',
     initials: 'KS',
 } as const;
 
