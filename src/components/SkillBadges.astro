@@ -1,26 +1,31 @@
 ---
 interface Props {
     skills: readonly string[];
+    /** The number shown before the title, such as "04". */
+    number: string;
 }
 
-const { skills } = Astro.props;
+const { skills, number } = Astro.props;
 ---
 
-<section id="skills" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
+<section id="skills" class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+    <div
+        class="border-outline grid grid-cols-1 gap-8 border-t pt-6 lg:grid-cols-12 lg:gap-12"
+    >
         <div class="lg:col-span-4">
-            <h2 class="label-md pt-2">Technical Stack</h2>
+            <h2 class="label-md flex gap-4">
+                <span class="text-on-surface">{number}</span>
+                Technical Stack
+            </h2>
         </div>
-        <div class="lg:col-span-8">
-            <div class="flex flex-wrap gap-2 md:gap-3">
-                {
-                    skills.map((skill) => (
-                        <div class="bg-surface-container-lowest body-lg text-on-surface hover:bg-surface-container-high border-outline-variant/10 cursor-default rounded-full border px-4 py-2 shadow-sm md:px-6 md:py-3 transition-all duration-300 hover:scale-105">
-                            {skill}
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
+        <ul class="flex flex-wrap gap-3 lg:col-span-8">
+            {
+                skills.map((skill) => (
+                    <li class="border-outline text-on-surface hover:bg-on-surface hover:text-surface cursor-default border px-4 py-2 font-mono text-base transition-colors md:px-6 md:py-3 md:text-lg">
+                        {skill}
+                    </li>
+                ))
+            }
+        </ul>
     </div>
 </section>

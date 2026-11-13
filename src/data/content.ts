@@ -11,12 +11,12 @@ export const profile = {
 export const about =
     'Fullstack Software Engineer with extensive experience in PHP-based web development, specializing in Laravel. Proven track record in building and maintaining scalable web and mobile applications using React, VueJS, MySQL. Adept at Linux server management, CI/CD pipelines, automation scripting, and infrastructure security. Strong background in Agile methodologies and client-focused development, with hands-on experience in Proxmox virtualization and containerisation. Committed to continuous learning and improving developer productivity through tooling and best practices.';
 
-import tilloLogo from '@/images/tillo.jpeg';
-import indieHackersLogo from '@/images/indie-hackers.jpeg';
-import tripcoLogo from '@/images/tripco.jpeg';
-import thamesSystemsLogo from '@/images/thames-systems.jpeg';
-import wethinkcodeLogo from '@/images/wethinkcode.jpg';
-import graduationPhoto from '@/images/graduation.jpeg';
+import tilloLogo from '@/images/dithered/tillo.png';
+import indieHackersLogo from '@/images/dithered/indie-hackers.png';
+import tripcoLogo from '@/images/dithered/tripco.png';
+import thamesSystemsLogo from '@/images/dithered/thames-systems.png';
+import wethinkcodeLogo from '@/images/dithered/wethinkcode.png';
+import graduationPhoto from '@/images/dithered/graduation.png';
 
 export const workExperience = [
     {
@@ -232,6 +232,7 @@ export const education = [
             },
         ],
         image: graduationPhoto,
+        imageAlt: 'WeThinkCode_ graduation, 2023',
     },
 ] as const;
 

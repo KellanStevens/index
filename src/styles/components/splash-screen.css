@@ -8,6 +8,13 @@
     animation: textFadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
+/* The splash is only motion, so leave it out for people who ask for less. */
+@media (prefers-reduced-motion: reduce) {
+    #splash-screen {
+        display: none;
+    }
+}
+
 @keyframes slideUpOut {
     from {
         transform: translateY(0%);

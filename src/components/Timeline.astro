@@ -1,113 +1,116 @@
 ---
 import type { ImageMetadata } from 'astro';
+import Badge from '@/components/ui/Badge.astro';
+import Dithered from '@/components/Dithered.astro';
+
 interface TimelineItemProps {
     title: string;
     subtitle: string;
     dateRange: string;
     description?: string;
     badges?: readonly string[];
+    /** A dithered logo of 56 dots square. */
     logo: ImageMetadata;
+    logoAlt: string;
     stack?: readonly { name: string; image?: string }[];
+    /** A dithered photo of 288 dots wide. */
     image?: ImageMetadata;
+    imageAlt?: string;
 }
 
 interface Props {
     title: string;
+    /** The number shown before the title, such as "01". */
+    number: string;
     id: string;
     items: TimelineItemProps[];
 }
 
-const { title, id, items } = Astro.props;
+const { title, number, id, items } = Astro.props;
 ---
 
-<section id={id} class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-24">
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
+<section id={id} class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+    <div
+        class="border-outline grid grid-cols-1 gap-8 border-t pt-6 lg:grid-cols-12 lg:gap-12"
+    >
         <div class="relative lg:col-span-4">
-            <h2 class="label-md sticky top-24 pt-2">{title}</h2>
+            <h2 class="label-md sticky top-24 flex gap-4">
+                <span class="text-on-surface">{number}</span>
+                {title}
+            </h2>
         </div>
 
-        <div class="space-y-6 lg:col-span-8 lg:space-y-16">
+        <ol class="divide-outline-variant divide-y lg:col-span-8">
             {
                 items.map((item) => (
-                    <div class="group bg-surface-container-lowest rounded-2xl p-5 sm:rounded-3xl sm:p-8 shadow-[0_10px_40px_rgba(45,51,56,0)] transition-colors duration-500 ease-out hover:shadow-[0_10px_40px_rgba(45,51,56,0.04)] flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                        <div class="flex items-center gap-4 md:w-36 md:flex-col md:items-start md:gap-4 shrink-0">
-                            <img
-                                src={item.logo.src}
-                                alt={`${item.title} logo`}
-                                loading="lazy"
-                                class="h-12 w-12 md:h-14 md:w-14 shrink-0 rounded-full object-cover bg-white ring-1 ring-outline-variant/30 transition-transform duration-500 shadow-sm"
-                                width={156}
-                                height={156}
-                            />
-                            <span class="label-sm text-on-surface-variant whitespace-nowrap pt-1">
-                                {item.dateRange}
-                            </span>
-                        </div>
+                    <li class="space-y-8 py-8 first:pt-0 last:pb-0 lg:py-10">
+                        <div class="flex flex-col gap-5 md:flex-row md:gap-8">
+                            <div class="border-outline size-14 shrink-0 border box-content md:size-28">
+                                <Dithered
+                                    src={item.logo}
+                                    alt={item.logoAlt}
+                                    class="w-full"
+                                />
+                            </div>
 
-                        <div class="flex-1 flex flex-col xl:flex-row gap-6 xl:gap-8">
                             <div class="flex-1">
-                                <h3 class="headline-lg mb-1 text-xl sm:text-2xl md:text-3xl">
-                                    {item.title}
-                                </h3>
-                                <div class="body-lg text-primary">
-                                    {item.subtitle}
-                                </div>
+                                <span class="label-sm block">
+                                    {item.dateRange}
+                                </span>
+                                <h3 class="headline-lg mt-2">{item.title}</h3>
+                                <div class="body-lg">{item.subtitle}</div>
 
-                                {(item.description ||
-                                    (item.badges && item.badges.length > 0)) && (
-                                    <div class="mt-4">
-                                        {item.description && (
-                                            <p class="body-lg text-on-surface-variant leading-relaxed">
-                                                {item.description}
-                                            </p>
-                                        )}
-                                        {item.badges && item.badges.length > 0 && (
-                                            <div class="mt-4 flex flex-wrap gap-2 md:mt-6">
-                                                {item.badges.map((badge: string) => (
-                                                    <span class="bg-surface-container-highest text-on-surface-variant rounded-full px-3 py-1 text-xs font-medium tracking-wider uppercase">
-                                                        {badge}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
+                                {item.description && (
+                                    <p class="body-lg mt-4">
+                                        {item.description}
+                                    </p>
                                 )}
-                                {item.stack && item.stack.length > 0 && (
-                                    <div class="mt-4 flex flex-wrap gap-2 md:mt-6 md:gap-3">
-                                        {item.stack.map((tech) => (
-                                            <div class="bg-surface-container text-on-surface border-outline-variant/30 hover:bg-surface-container-high hover:border-outline-variant/60 flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium shadow-xs transition-colors">
+
+                                {((item.badges && item.badges.length > 0) ||
+                                    (item.stack && item.stack.length > 0)) && (
+                                    <div class="mt-5 flex flex-wrap gap-2">
+                                        {item.badges?.map((badge) => (
+                                            <Badge variant="default">
+                                                {badge}
+                                            </Badge>
+                                        ))}
+                                        {item.stack?.map((tech) => (
+                                            <Badge variant="outline">
                                                 {tech.image && (
                                                     <img
                                                         src={tech.image}
-                                                        alt={tech.name}
-                                                        class="h-4 w-4 object-contain opacity-80"
+                                                        alt=""
+                                                        class="size-3.5 object-contain brightness-0 dark:invert"
                                                         loading="lazy"
                                                     />
                                                 )}
-                                                <span>{tech.name}</span>
-                                            </div>
+                                                {tech.name}
+                                            </Badge>
                                         ))}
                                     </div>
                                 )}
                             </div>
+                        </div>
 
-                            {item.image && (
-                                <div class="xl:w-1/2 overflow-hidden rounded-2xl shadow-sm border border-outline-variant/30 shrink-0 xl:self-stretch flex">
-                                    <img
-                                        src={item.image.src}
-                                        alt={`${item.title} image`}
-                                        width={item.image.width}
-                                        height={item.image.height}
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover block"
+                        {item.image && (
+                            <figure class="w-fit">
+                                <div class="border-outline box-content w-72 border md:w-144">
+                                    <Dithered
+                                        src={item.image}
+                                        alt={item.imageAlt ?? ''}
+                                        class="w-full"
                                     />
                                 </div>
-                            )}
-                        </div>
-                    </div>
+                                {item.imageAlt && (
+                                    <figcaption class="label-sm mt-3">
+                                        {item.imageAlt}
+                                    </figcaption>
+                                )}
+                            </figure>
+                        )}
+                    </li>
                 ))
             }
-        </div>
+        </ol>
     </div>
 </section>

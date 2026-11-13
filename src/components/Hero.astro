@@ -1,39 +1,62 @@
 ---
-import profileImg from '@/images/kellan.jpeg';
+import Dithered from '@/components/Dithered.astro';
+import portrait from '@/images/dithered/kellan.png';
+import type { profile as Profile } from '@/data/content';
 
 interface Props {
-    profile: any;
+    profile: typeof Profile;
     about: string;
 }
 
 const { profile, about } = Astro.props;
+const [firstName, ...lastNames] = profile.name.split(' ');
 ---
 
 <section
-    class="mx-auto flex max-w-7xl flex-col justify-center px-4 pt-16 pb-12 sm:px-6 md:min-h-[80vh] md:py-20 lg:px-8"
+    class="mx-auto flex max-w-7xl flex-col justify-center px-4 pt-20 pb-12 sm:px-6 lg:min-h-screen lg:px-8 lg:py-24"
 >
-    <div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
-        <div class="flex flex-col items-start space-y-8 md:col-span-8">
-            <div class="space-y-4">
-                <img
-                    src={profileImg.src}
-                    alt={profile.name}
-                    width={80}
-                    height={80}
-                    class="ring-outline-variant/30 h-20 w-20 rounded-full object-cover shadow-sm ring-1 md:hidden"
-                />
-                <span class="label-md block">{profile.location}</span>
-                <h1 class="display-lg">{profile.name}</h1>
-            </div>
+    <div class="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-2">
+        <div class="space-y-6 lg:self-end">
+            <span class="label-md block">{profile.location}</span>
+            <h1 class="display-lg">
+                {firstName}<br />{lastNames.join(' ')}
+            </h1>
+        </div>
 
-            <p class="body-lg text-on-surface-variant max-w-2xl">
+        <figure
+            class="w-fit lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center lg:justify-self-end"
+        >
+            <div class="relative">
+                <div
+                    class="dither-50 absolute inset-0 translate-x-2 translate-y-2"
+                >
+                </div>
+                <div
+                    class="border-outline bg-surface relative box-content w-72 border sm:w-96"
+                >
+                    <Dithered
+                        src={portrait}
+                        alt={`Portrait of ${profile.name}`}
+                        loading="eager"
+                        class="w-full"
+                    />
+                </div>
+            </div>
+            <figcaption class="label-sm mt-5 flex justify-between gap-4">
+                <span>Fig. 01 — 1-bit</span>
+                <span>Est. 2002</span>
+            </figcaption>
+        </figure>
+
+        <div class="space-y-8 lg:self-start">
+            <p class="body-lg max-w-xl">
                 {profile.title}
             </p>
 
-            <div class="grid w-full grid-cols-2 gap-3 pt-2 sm:flex sm:w-auto sm:flex-wrap sm:gap-4 sm:pt-4">
+            <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap xl:gap-4">
                 <a
                     href={`mailto:${profile.email}`}
-                    class="from-primary to-primary-dim text-on-primary label-md col-span-2 rounded-full bg-gradient-to-br px-4 py-4 text-center tracking-[0.1em] transition-opacity hover:opacity-90 sm:px-6 lg:px-8"
+                    class="bg-primary text-on-primary border-outline label-md hover:shadow-hard col-span-2 border px-5 py-4 text-center transition-all hover:-translate-x-1 hover:-translate-y-1 xl:px-8"
                 >
                     Contact Me
                 </a>
@@ -41,7 +64,7 @@ const { profile, about } = Astro.props;
                     href={profile.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
+                    class="border-outline text-on-surface label-md hover:bg-on-surface hover:text-surface border px-5 py-4 text-center transition-colors xl:px-8"
                 >
                     LinkedIn
                 </a>
@@ -49,42 +72,22 @@ const { profile, about } = Astro.props;
                     href={profile.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border-outline-variant/30 text-on-surface hover:bg-surface-container-low label-md rounded-full border px-4 py-4 text-center tracking-[0.1em] transition-colors sm:px-6 lg:px-8"
+                    class="border-outline text-on-surface label-md hover:bg-on-surface hover:text-surface border px-5 py-4 text-center transition-colors xl:px-8"
                 >
                     GitHub
                 </a>
             </div>
         </div>
-
-        <div class="hidden justify-center md:col-span-4 md:flex">
-            <div
-                class="bg-surface-container-low group relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl shadow-[0_10px_40px_rgba(45,51,56,0.04)]"
-            >
-                <img
-                    src={profileImg.src}
-                    alt={profile.name}
-                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div
-                    class="from-surface-container-lowest/80 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
-                >
-                </div>
-                <div class="absolute right-6 bottom-6 left-6">
-                    <span
-                        class="label-sm text-on-surface bg-surface-container-lowest/80 inline-block rounded-full px-4 py-2 shadow-sm backdrop-blur-md"
-                        >EST. 2002</span
-                    >
-                </div>
-            </div>
-        </div>
     </div>
 
-    <div class="mt-16 grid grid-cols-1 gap-4 md:mt-32 lg:grid-cols-12 lg:gap-12">
+    <div
+        class="border-outline mt-16 grid grid-cols-1 gap-4 border-t pt-6 lg:mt-24 lg:grid-cols-12 lg:gap-12"
+    >
         <div class="lg:col-span-4">
-            <h2 class="label-md pt-2">About</h2>
+            <h2 class="label-md">About</h2>
         </div>
         <div class="lg:col-span-8">
-            <p class="body-lg text-on-surface-variant leading-relaxed">
+            <p class="body-lg">
                 {about}
             </p>
         </div>

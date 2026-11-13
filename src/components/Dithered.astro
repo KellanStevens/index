@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from 'astro';
+
+/**
+ * A 1-bit image from src/images/dithered/, made by `bun run dither`.
+ *
+ * The file is black dots on white. The blend mode drops one of the two, so
+ * the dots take the place of ink on the page: multiply removes the white in
+ * the light theme, and screen removes the black in the dark theme. For this to
+ * work, the image must sit straight on the page background, with no ancestor
+ * that has opacity, a filter or a transform.
+ *
+ * Give it a width that is a whole multiple of the file's width, or the dots
+ * come out uneven.
+ */
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+    class?: string;
+    loading?: 'eager' | 'lazy';
+}
+
+const { src, alt, class: className, loading = 'lazy' } = Astro.props;
+---
+
+<img
+    src={src.src}
+    alt={alt}
+    width={src.width}
+    height={src.height}
+    loading={loading}
+    decoding="async"
+    class:list={[
+        'pixelated block h-auto mix-blend-multiply dark:mix-blend-screen',
+        className,
+    ]}
+/>

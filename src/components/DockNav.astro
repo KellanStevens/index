@@ -11,13 +11,13 @@ const links = [
     class="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex justify-center px-2 md:bottom-8"
 >
     <nav
-        class="bg-surface/80 border-outline-variant/20 pointer-events-auto flex max-w-full items-center gap-1 rounded-full border p-1.5 shadow-[0_10px_40px_rgba(45,51,56,0.08)] backdrop-blur-xl sm:gap-2 sm:p-2"
+        class="bg-surface border-outline shadow-hard pointer-events-auto flex max-w-full items-center gap-1 border p-1"
     >
         {
             links.map((link) => (
                 <a
                     href={link.href}
-                    class="dock-link text-on-surface label-sm hover:bg-surface-container rounded-full px-2.5 py-3.5 whitespace-nowrap transition-all duration-300 sm:px-6 sm:py-3"
+                    class="dock-link label-sm text-on-surface data-active:bg-on-surface data-active:text-surface not-data-active:hover:bg-surface-container-high px-2.5 py-3 whitespace-nowrap transition-colors sm:px-5"
                 >
                     <span class="sm:hidden">{link.shortLabel}</span>
                     <span class="hidden sm:inline">{link.label}</span>
@@ -40,18 +40,10 @@ const links = [
 
         const activateLink = (id) => {
             navLinks.forEach((link) => {
-                link.classList.remove(
-                    'bg-surface-container-highest',
-                    'shadow-[0_2px_10px_rgba(0,0,0,0.05)]',
-                    'text-primary',
+                link.toggleAttribute(
+                    'data-active',
+                    link.getAttribute('href') === `#${id}`,
                 );
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add(
-                        'bg-surface-container-highest',
-                        'shadow-[0_2px_10px_rgba(0,0,0,0.05)]',
-                        'text-primary',
-                    );
-                }
             });
         };
 

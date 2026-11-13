@@ -29,6 +29,26 @@ inline styles in `.ts` and `.tsx` files. It does not check class attributes in
 Tailwind scans `src/` only (`source("../")` in `global.css`), so a word in a
 README or a config file does not add a class to the CSS.
 
+### Dithered images
+
+Every image on the page is a 1-bit PNG in `src/images/dithered/`, made from a
+JPEG in `src/images/` by `scripts/dither.ts` (Atkinson dithering, in
+`src/lib/dither.ts`). The PNGs are committed. After you add or change a photo,
+add it to `jobs` in the script, then run:
+
+```sh
+bun run dither
+```
+
+A PNG holds one dot per pixel. `src/components/Dithered.astro` shows it with
+`image-rendering: pixelated` and a blend mode, so the dots take the ink colour
+of the theme. Give the image a width that is a whole multiple of the file's
+width (the portrait is 192 dots wide and shows at 384px), or the dots come out
+uneven.
+
+`DitherFade.astro` draws the band above the footer, and the `dither-50` and
+`dither-25` utilities in `global.css` fill a box with a dot pattern.
+
 ## Deploy
 
 The Worker is `index`, on the custom domain `kellanstevens.com`, set in

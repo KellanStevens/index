@@ -28,6 +28,7 @@ const experienceItems = fullTimeExperience.map((job) => ({
     description: job.description,
     badges: [job.location],
     logo: job.logo,
+    logoAlt: `${job.company} logo`,
     stack: job.stack,
 }));
 
@@ -38,6 +39,7 @@ const volunteerContractItems = volunteerContractExperience.map((job) => ({
     description: job.description,
     badges: [job.location],
     logo: job.logo,
+    logoAlt: `${job.company} logo`,
     stack: job.stack,
 }));
 
@@ -46,8 +48,10 @@ const educationItems = education.map((edu) => ({
     subtitle: edu.school,
     dateRange: edu.dateRange,
     logo: edu.logo,
+    logoAlt: `${edu.school} logo`,
     stack: edu.stack,
     image: edu.image,
+    imageAlt: edu.imageAlt,
 }));
 ---
 
@@ -59,24 +63,31 @@ const educationItems = education.map((edu) => ({
         <ThemeToggle />
     </div>
 
-    <main class="relative pb-16 md:pb-40">
+    <main class="relative pb-16 md:pb-24">
         <Hero profile={profile} about={about} />
 
         <Timeline
             id="experience"
             title="Work Experience"
+            number="01"
             items={experienceItems}
         />
 
         <Timeline
             id="additional-experience"
             title="Additional Experience"
+            number="02"
             items={volunteerContractItems}
         />
 
-        <Timeline id="education" title="Education" items={educationItems} />
+        <Timeline
+            id="education"
+            title="Education"
+            number="03"
+            items={educationItems}
+        />
 
-        <SkillBadges skills={skills} />
+        <SkillBadges skills={skills} number="04" />
 
         <DockNav />
     </main>

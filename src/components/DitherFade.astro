@@ -1,0 +1,35 @@
+---
+import { bayerFadePath } from '@/lib/dither';
+
+/**
+ * A full-width band that fades from the page to solid ink with ordered
+ * dithering. Put it above a block with `bg-on-surface`.
+ *
+ * One tile of the Bayer pattern is drawn as a path and repeated sideways.
+ * Each dot is 2 units, which matches `--dot` in global.css.
+ */
+const size = 8;
+const rows = 48;
+const dot = 2;
+---
+
+<svg
+    class="text-on-surface block h-24 w-full"
+    aria-hidden="true"
+    shape-rendering="crispEdges"
+>
+    <defs>
+        <pattern
+            id="dither-fade"
+            width={size * dot}
+            height={rows * dot}
+            patternUnits="userSpaceOnUse"
+        >
+            <path
+                d={bayerFadePath(size, rows, size)}
+                transform={`scale(${dot})`}
+                fill="currentColor"></path>
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#dither-fade)"></rect>
+</svg>
