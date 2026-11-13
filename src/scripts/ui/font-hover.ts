@@ -1,17 +1,12 @@
+import { displayFonts } from '@/scripts/ui/fonts';
+
 function initFontHover() {
     const letters = document.querySelectorAll<HTMLElement>('.hover-letter');
-    const fonts = [
-        'Impact, sans-serif',
-        'Bradley Hand, cursive',
-        'Brush Script MT, cursive',
-        'Luminari, fantasy',
-        'Pilowlava',
-        '"Sirin Stencil"',
-    ];
 
     letters.forEach((letter) => {
         letter.addEventListener('mouseenter', () => {
-            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+            const randomFont =
+                displayFonts[Math.floor(Math.random() * displayFonts.length)];
             letter.style.fontFamily = randomFont;
         });
 
