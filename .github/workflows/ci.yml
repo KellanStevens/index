@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   check:
-    uses: KellanStevens/ci/.github/workflows/check.yml@9ab1b4c0de370f2b42b106122b2a0f969f9e734c # v1.1.0
+    uses: KellanStevens/ci/.github/workflows/check.yml@bdd3da73b62ef9d42ee0771506247bacbe10d3bb # v1.2.0
     with:
       scripts: lint typecheck test build
 
@@ -29,7 +29,7 @@ jobs:
   # - GHSA-gcqx-w48m-w2h4: deepmerge 4.3.1 (low). No patched version exists.
   #   Only the shadcn CLI uses it, and the site does not.
   audit:
-    uses: KellanStevens/ci/.github/workflows/audit.yml@9ab1b4c0de370f2b42b106122b2a0f969f9e734c # v1.1.0
+    uses: KellanStevens/ci/.github/workflows/audit.yml@bdd3da73b62ef9d42ee0771506247bacbe10d3bb # v1.2.0
     with:
       ignore: GHSA-gcqx-w48m-w2h4
 
@@ -38,7 +38,7 @@ jobs:
   deploy:
     needs: check
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !github.event.repository.is_template }}
-    uses: KellanStevens/ci/.github/workflows/deploy.yml@9ab1b4c0de370f2b42b106122b2a0f969f9e734c # v1.1.0
+    uses: KellanStevens/ci/.github/workflows/deploy.yml@bdd3da73b62ef9d42ee0771506247bacbe10d3bb # v1.2.0
     with:
       url: https://kellanstevens.com
       # The site is public, and so are previews. See README.md, "Access".
