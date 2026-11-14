@@ -115,8 +115,13 @@ export function zoomThrough(splash: HTMLElement, done: () => void) {
         // The grid tokens are in rem (global.css).
         size: parseFloat(splashStyle.getPropertyValue(property)) * rootFontSize,
     }));
+    // The production build minifies the token from "1150ms" to "1.15s", so
+    // the unit has to be read too.
+    const durationToken = splashStyle.getPropertyValue('--splash-zoom-ms').trim();
+    const durationValue = parseFloat(durationToken);
     const duration =
-        parseFloat(splashStyle.getPropertyValue('--splash-zoom-ms')) || 1150;
+        (durationToken.endsWith('ms') ? durationValue : durationValue * 1000) ||
+        1150;
 
     // A box of no size sits on the baseline of the text.
     const probe = document.createElement('i');
