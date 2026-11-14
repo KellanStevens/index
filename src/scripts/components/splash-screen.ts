@@ -1,15 +1,17 @@
+import { zoomThrough } from '@/scripts/components/splash-zoom';
 import { displayFonts, webDisplayFonts } from '@/scripts/ui/fonts';
 
 // The shuffle is a wave in two passes, both from the left. First the letters
 // start to change font one at a time, START_STEP_MS apart, each one every
 // FLIP_MS. When the last letter has started, the letters settle on the font of
-// the name one at a time, SETTLE_STEP_MS apart. The splash screen starts to
-// slide away at 2.8s (splash-screen.css), so the whole name must be still
-// before that: with six letters, the last one settles at 1.83s.
+// the name one at a time, SETTLE_STEP_MS apart. The exit starts at EXIT_MS and
+// copies the name as it is then, so the whole name must be still before that:
+// with six letters, the last one settles at 1.83s.
 const FLIP_MS = 120;
 const START_STEP_MS = 150;
 const SETTLE_STEP_MS = 180;
-const REMOVE_MS = 4300;
+const EXIT_MS = 2800;
+const FADE_MS = 300;
 
 function shuffleFonts(splash: HTMLElement) {
     const letters = [...splash.querySelectorAll<HTMLElement>('.splash-letter')];
@@ -65,8 +67,16 @@ function initSplashScreen() {
     }
 
     setTimeout(() => {
-        splash.remove();
-    }, REMOVE_MS);
+        const remove = () => splash.remove();
+        splash.classList.add('is-exiting');
+
+        if (reducedMotion) {
+            splash.classList.add('is-fading');
+            setTimeout(remove, FADE_MS);
+        } else {
+            zoomThrough(splash, remove);
+        }
+    }, EXIT_MS);
 }
 
 initSplashScreen();

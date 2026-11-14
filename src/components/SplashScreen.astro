@@ -25,6 +25,34 @@ const letters = name.split('');
             }
         </h1>
     </div>
+
+    <!--
+        The exit: a copy of the sheet as an SVG, with the name cut out of it.
+        scripts/components/splash-zoom.ts sizes it, puts it in place of the
+        HTML name and zooms through a letter.
+    -->
+    <svg id="splash-knockout" aria-hidden="true" focusable="false">
+        <defs>
+            <pattern id="splash-grid-minor" patternUnits="userSpaceOnUse">
+                <path class="splash-grid-minor"></path>
+            </pattern>
+            <pattern id="splash-grid-major" patternUnits="userSpaceOnUse">
+                <path class="splash-grid-major"></path>
+            </pattern>
+            <mask id="splash-mask" maskUnits="userSpaceOnUse">
+                <rect class="splash-full" fill="#fff"></rect>
+                <g class="splash-zoom"><text fill="#000"></text></g>
+            </mask>
+        </defs>
+        <g mask="url(#splash-mask)">
+            <rect class="splash-full splash-sheet"></rect>
+            <g class="splash-grid">
+                <rect class="splash-full" fill="url(#splash-grid-minor)"></rect>
+                <rect class="splash-full" fill="url(#splash-grid-major)"></rect>
+            </g>
+        </g>
+        <g class="splash-zoom splash-ink"><text></text></g>
+    </svg>
 </div>
 
 <script src="@/scripts/components/splash-screen.ts"></script>

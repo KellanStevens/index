@@ -1,9 +1,13 @@
 #splash-screen {
     --grid-minor: color-mix(in srgb, var(--blueprint-ink) 7%, transparent);
     --grid-major: color-mix(in srgb, var(--blueprint-ink) 14%, transparent);
+    /* The length of the zoom. splash-zoom.ts reads it. */
+    --splash-zoom-ms: 1150ms;
     background-color: var(--blueprint);
     color: var(--blueprint-ink);
-    animation: slideUpOut 0.8s cubic-bezier(0.76, 0, 0.24, 1) 2.8s forwards;
+    /* The script removes the splash screen. If the script does not run, this
+       hides it, so that the page is never stuck behind it. */
+    animation: splashFailsafe 0s 6s forwards;
 }
 
 .splash-text {
@@ -12,12 +16,95 @@
     animation: textFadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
-@keyframes slideUpOut {
-    from {
-        transform: translateY(0%);
-    }
+/*
+ * The exit: zoom through the name. The script sizes the SVG copy of the sheet
+ * and adds .is-zooming, which swaps the copy in for the HTML sheet and name.
+ * The script then scales the name; the fades here run on the same clock.
+ */
+#splash-knockout {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#splash-knockout text {
+    /* Each glyph has its own x position, taken from the HTML name. */
+    font-kerning: none;
+}
+
+#splash-knockout .splash-sheet {
+    fill: var(--blueprint);
+}
+
+#splash-knockout .splash-ink {
+    fill: var(--blueprint-ink);
+}
+
+#splash-knockout .splash-grid-minor {
+    fill: var(--grid-minor);
+}
+
+#splash-knockout .splash-grid-major {
+    fill: var(--grid-major);
+}
+
+#splash-screen.is-exiting {
+    pointer-events: none;
+}
+
+#splash-screen.is-zooming {
+    background: none;
+}
+
+#splash-screen.is-zooming .splash-text {
+    visibility: hidden;
+}
+
+#splash-screen.is-zooming #splash-knockout {
+    display: block;
+    animation: splashSheetOut var(--splash-zoom-ms) linear forwards;
+}
+
+/* The ink leaves the letters, which become openings onto the page. The grid
+   leaves before the zoom gets fast. */
+#splash-screen.is-zooming .splash-ink {
+    animation: splashFadeOut calc(var(--splash-zoom-ms) * 0.24)
+        cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+#splash-screen.is-zooming .splash-grid {
+    animation: splashFadeOut calc(var(--splash-zoom-ms) * 0.36)
+        cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* With reduced motion, the script adds only .is-fading. */
+#splash-screen.is-fading {
+    animation: splashFadeOut 0.3s linear forwards;
+}
+
+@keyframes splashFailsafe {
     to {
-        transform: translateY(-100%);
+        visibility: hidden;
+    }
+}
+
+@keyframes splashFadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes splashSheetOut {
+    0%,
+    80% {
+        opacity: 1;
+        animation-timing-function: cubic-bezier(0.5, 0, 0.9, 0.6);
+    }
+    100% {
+        opacity: 0;
     }
 }
 
