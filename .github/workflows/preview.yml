@@ -17,7 +17,7 @@ jobs:
   preview:
     # The template repository itself never deploys.
     if: ${{ !github.event.repository.is_template }}
-    uses: KellanStevens/ci/.github/workflows/preview.yml@9ab1b4c0de370f2b42b106122b2a0f969f9e734c # v1.1.0
+    uses: KellanStevens/ci/.github/workflows/preview.yml@bdd3da73b62ef9d42ee0771506247bacbe10d3bb # v1.2.0
     # The called workflow cannot have more than these.
     permissions:
       contents: read
